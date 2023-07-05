@@ -1,9 +1,10 @@
 export type SiteConfig = typeof siteConfig
 
 export const siteConfig = {
-  name: "Guidlify",
-  url: "https://guidlify.com",
-  description: "Guidlify, where developers guild meet.",
+  name: "WebXGuild",
+  url: "https://webxguild.com",
+  description:
+    "WebXGuild, where developers guild meet.",
   mainNav: [
     {
       title: "Home",
@@ -12,6 +13,6 @@ export const siteConfig = {
   ],
   links: {
     twitter: "https://twitter.com/webxdao",
-    github: "https://github.com/webxguild/guidlify",
+    github: "https://github.com/webxdao/webxguild"
   },
 }
