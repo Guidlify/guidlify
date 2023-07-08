@@ -207,7 +207,7 @@ export default function Login() {
                 title: "👀 This feature need to be implemented.",
                 description: <ToastContribute></ToastContribute>,
                 action: <ToastAction altText="Try again">Ok!</ToastAction>,
-              })}>Don't have an account? Sign up</p>
+              })}>Don&apos;t have an account? Sign up</p>
           </Link>
         </div>
       ) : (
