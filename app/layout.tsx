@@ -2,18 +2,20 @@ import { Inter as FontSans } from "next/font/google"
 import localFont from "next/font/local"
 
 import "@/styles/globals.css"
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
+import { Metadata } from "next"
+import { cookies } from "next/headers"
 
+import AuthNav from "@/components/auth-nav"
 import { MainNav } from "@/components/main-nav"
 import { SiteFooter } from "@/components/site-footer"
 import { TailwindIndicator } from "@/components/tailwind-indicator"
 import { ThemeProvider } from "@/components/theme-provider"
-import { buttonVariants } from "@/components/ui/button"
 import { Toaster } from "@/components/ui/toaster"
 import { landingConfig } from "@/config/landing"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
-import { Metadata } from "next"
-import Link from "next/link"
+import { Database } from "@/types/supabase"
 
 export const dynamic = 'force-dynamic'
 
