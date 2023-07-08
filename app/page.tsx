@@ -1,8 +1,12 @@
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
+import { cookies } from "next/headers"
 import Link from "next/link"
 
 import { buttonVariants } from "@/components/ui/button"
+import { buttonVariants } from "@/components/ui/button"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
+import { Database } from "@/types/supabase"
 
 export default function IndexPage() {
   return (
@@ -23,9 +27,19 @@ export default function IndexPage() {
             Where developers guild meet. Create your events, request sponsorship, and more.
           </p>
           <div className="space-x-4">
-            <Link href="/login" className={cn(buttonVariants({ size: "lg" }))}>
-              Login
-            </Link>
+            {!session ? (
+              <Link
+                href="/login"
+                className={cn(buttonVariants({ size: "lg" }))}
+              >
+                Login
+              </Link>
+            ) : <Link
+            href="/login"
+            className={cn(buttonVariants({ size: "lg" }))}
+          >
+            Enter in WebXGuild
+          </Link>}
             <Link
               href={siteConfig.links.github}
               target="_blank"
