@@ -37,7 +37,14 @@ export default async function IndexPage() {
               >
                 Login
               </Link>
-            ) : null}
+            ) : (
+              <Link
+                href="/login"
+                className={cn(buttonVariants({ size: "lg" }))}
+              >
+                Enter in WebXGuild
+              </Link>
+            )}
             <Link
               href={siteConfig.links.github}
               target="_blank"
