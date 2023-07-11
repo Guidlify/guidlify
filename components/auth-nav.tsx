@@ -4,6 +4,7 @@ import { useCallback, useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname, useRouter } from "next/navigation"
 import { NavItem } from "@/types"
+import { type Session } from "@supabase/auth-helpers-nextjs"
 
 import { ProfileState } from "@/types/users"
 import supabaseClient from "@/lib/supabase-browser"
@@ -13,17 +14,15 @@ import { Button, buttonVariants } from "@/components/ui/button"
 import { Skeleton } from "./ui/skeleton"
 
 interface AuthNavProps {
-  items: NavItem[]
+  session: Session | null
+  items?: NavItem[]
 }
 
-export default async function AuthNav({ items }: AuthNavProps) {
+export default function AuthNav({ session, items }: AuthNavProps) {
   const pathname = usePathname()
 
   const router = useRouter()
   const [detail, setDetail] = useState<ProfileState>()
-  const {
-    data: { session },
-  } = await supabaseClient.auth.getSession()
 
   const handleSignOut = useCallback(async () => {
     await supabaseClient.auth.signOut()
