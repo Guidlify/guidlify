@@ -24,6 +24,7 @@ interface UserProfile {
   last_name: string
   country: Country
   countries: Countries
+  about_me: string | null
 }
 
 export type ProfileState = UserProfile
