@@ -17,6 +17,7 @@ export default function Login() {
     setPassword("")
   }
 
+
   return (
     <div className="mx-auto flex flex-col gap-1 sm:w-1/2 md:w-1/2 lg:w-2/5 xl:w-1/3">
       {!isHidden ? (
