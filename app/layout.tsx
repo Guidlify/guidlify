@@ -81,11 +81,6 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const supabase = supabaseServer()
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
@@ -100,7 +95,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <header className="container z-40 bg-background">
             <div className="flex h-20 items-center justify-between py-6">
               <MainNav items={landingConfig.mainNav} />
-              <AuthNav session={session} items={landingConfig.privateNav} />
+              <AuthNav items={landingConfig.privateNav} />
             </div>
           </header>
           <div className="grow">{children}</div>
