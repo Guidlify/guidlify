@@ -3,12 +3,10 @@ import localFont from "next/font/local"
 
 import "@/styles/globals.css"
 import { Metadata } from "next"
-import { cookies } from "next/headers"
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 
-import { Database } from "@/types/supabase"
 import { landingConfig } from "@/config/landing"
 import { siteConfig } from "@/config/site"
+import { supabaseServer } from "@/lib/supabase-server"
 import { cn } from "@/lib/utils"
 import { Toaster } from "@/components/ui/toaster"
 import AuthNav from "@/components/auth-nav"
@@ -83,7 +81,7 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const supabase = createServerComponentClient<Database>({ cookies })
+  const supabase = supabaseServer()
   const {
     data: { session },
   } = await supabase.auth.getSession()
