@@ -1,14 +1,14 @@
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 import { cookies } from "next/headers"
-import Link from "next/link"
-
 import { buttonVariants } from "@/components/ui/button"
+import Link from "next/link"
 import { siteConfig } from "@/config/site"
+import { supabaseServer } from "@/lib/supabase-server"
 import { cn } from "@/lib/utils"
 import { Database } from "@/types/supabase"
 
 export default async function IndexPage() {
-  const supabase = createServerComponentClient<Database>({ cookies })
+  const supabase = supabaseServer()
   const {
     data: { session },
   } = await supabase.auth.getSession()

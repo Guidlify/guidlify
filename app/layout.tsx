@@ -5,7 +5,7 @@ import "@/styles/globals.css"
 import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
 import { Metadata } from "next"
 import { cookies } from "next/headers"
-
+import { supabaseServer } from "@/lib/supabase-server"
 import AuthNav from "@/components/auth-nav"
 import { MainNav } from "@/components/main-nav"
 import { SiteFooter } from "@/components/site-footer"
@@ -83,7 +83,7 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const supabase = createServerComponentClient<Database>({ cookies })
+  const supabase = supabaseServer()
   const {
     data: { session },
   } = await supabase.auth.getSession()
