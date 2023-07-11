@@ -1,9 +1,11 @@
+import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
+import { cookies } from "next/headers"
+import { buttonVariants } from "@/components/ui/button"
 import Link from "next/link"
-
 import { siteConfig } from "@/config/site"
 import { supabaseServer } from "@/lib/supabase-server"
 import { cn } from "@/lib/utils"
-import { buttonVariants } from "@/components/ui/button"
+import { Database } from "@/types/supabase"
 
 export default async function IndexPage() {
   const supabase = supabaseServer()
@@ -37,7 +39,12 @@ export default async function IndexPage() {
               >
                 Login
               </Link>
-            ) : null}
+            ) : <Link
+            href="/login"
+            className={cn(buttonVariants({ size: "lg" }))}
+          >
+            Enter in WebXGuild
+          </Link>}
             <Link
               href={siteConfig.links.github}
               target="_blank"
