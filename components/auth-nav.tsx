@@ -2,18 +2,27 @@
 
 import React from "react"
 import Link from "next/link"
-import { useRouter } from "next/navigation"
-import {
-  createClientComponentClient,
-  type Session,
-} from "@supabase/auth-helpers-nextjs"
+import { usePathname, useRouter } from "next/navigation"
+import { NavItem } from "@/types"
+import { type Session } from "@supabase/auth-helpers-nextjs"
 
-import { cn } from "@/lib/utils"
+import { ProfileState } from "@/types/users"
+import supabaseClient from "@/lib/supabase-browser"
+import { cn, getCountryFlag } from "@/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
 
-export default function AuthNav({ session }: { session: Session | null }) {
+import { Skeleton } from "./ui/skeleton"
+
+interface AuthNavProps {
+  session: Session | null
+  items?: NavItem[]
+}
+
+export default function AuthNav({ session, items }: AuthNavProps) {
+  const pathname = usePathname()
+
   const router = useRouter()
-  const supabase = createClientComponentClient()
+  const [detail, setDetail] = useState<ProfileState>()
 
   const handleSignOut = async () => {
     await supabase.auth.signOut()
