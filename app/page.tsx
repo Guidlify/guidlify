@@ -25,7 +25,7 @@ export default async function IndexPage() {
           <h1 className="font-heading text-3xl sm:text-5xl md:text-6xl lg:text-7xl">
             WebXGuild 🎩
           </h1>
-          <p className="max-w-[42rem] leading-normal text-muted-foreground sm:text-xl sm:leading-8">
+          <p className="text-balance max-w-[45rem] flex-wrap leading-normal text-muted-foreground sm:text-xl sm:leading-8">
             Where developers guild meet. Create your events, request
             sponsorship, and more.
           </p>
@@ -38,10 +38,7 @@ export default async function IndexPage() {
                 Login
               </Link>
             ) : (
-              <Link
-                href="/login"
-                className={cn(buttonVariants({ size: "lg" }))}
-              >
+              <Link href="/app" className={cn(buttonVariants({ size: "lg" }))}>
                 Enter in WebXGuild
               </Link>
             )}
