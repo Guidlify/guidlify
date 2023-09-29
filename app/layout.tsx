@@ -1,19 +1,28 @@
-import { Inter as FontSans } from "next/font/google"
-import localFont from "next/font/local"
+import { Inter as FontSans } from "next/font/google";
+import localFont from "next/font/local";
 
-import "@/styles/globals.css"
-import { Metadata } from "next"
 
-import { landingConfig } from "@/config/landing"
-import { siteConfig } from "@/config/site"
-import { supabaseServer } from "@/lib/supabase-server"
-import { cn } from "@/lib/utils"
-import { Toaster } from "@/components/ui/toaster"
-import AuthNav from "@/components/auth-nav"
-import { MainNav } from "@/components/main-nav"
-import { SiteFooter } from "@/components/site-footer"
-import { TailwindIndicator } from "@/components/tailwind-indicator"
-import { ThemeProvider } from "@/components/theme-provider"
+
+import "@/styles/globals.css";
+import { Metadata } from "next";
+
+
+
+import { landingConfig } from "@/config/landing";
+import { siteConfig } from "@/config/site";
+import { supabaseServer } from "@/lib/supabase-server";
+import { cn } from "@/lib/utils";
+import { Toaster } from "@/components/ui/toaster";
+import AuthNav from "@/components/auth-nav";
+import { MainNav } from "@/components/main-nav";
+import { SiteFooter } from "@/components/site-footer";
+import { TailwindIndicator } from "@/components/tailwind-indicator";
+import { ThemeProvider } from "@/components/theme-provider";
+
+
+
+import MirageProvider from "./mirage-provider";
+
 
 export const dynamic = "force-dynamic"
 
@@ -108,6 +117,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <TailwindIndicator />
           <Toaster />
         </ThemeProvider>
+        <MirageProvider />
       </body>
     </html>
   )
