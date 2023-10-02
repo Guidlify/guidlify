@@ -1,11 +1,10 @@
 {
-  "name": "webx-guild",
-  "version": "0.0.2",
+  "name": "guidlify.com",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "vercel-build": "prisma generate && next build",
     "start": "next start",
     "lint": "next lint",
     "lint:fix": "next lint --fix",
@@ -20,8 +19,6 @@
     "@radix-ui/react-icons": "^1.3.0",
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toast": "^1.1.4",
-    "@supabase/auth-helpers-nextjs": "^0.7.2",
-    "@supabase/supabase-js": "^2.26.0",
     "class-variance-authority": "^0.6.1",
     "clsx": "^1.2.1",
     "lucide-react": "^0.230.0",
@@ -30,6 +27,7 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sharp": "^0.31.3",
+    "swr": "^2.2.4",
     "tailwind-merge": "^1.13.2",
     "tailwindcss-animate": "^1.0.6"
   },
@@ -47,12 +45,9 @@
     "eslint-config-prettier": "^8.8.0",
     "eslint-plugin-react": "^7.32.2",
     "eslint-plugin-tailwindcss": "^3.12.0",
-    "miragejs": "^0.1.47",
     "postcss": "^8.4.24",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.3.0",
-    "prisma": "^4.16.2",
-    "supabase": "^1.75.3",
     "tailwindcss": "^3.3.2",
     "typescript": "^4.9.5"
   }

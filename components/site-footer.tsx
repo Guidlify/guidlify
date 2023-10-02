@@ -1,9 +1,9 @@
 import * as React from "react"
 
-import { Icons } from "@/components/icons"
-import { ModeToggle } from "@/components/mode-toggle"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
+import { Icons } from "@/components/icons"
+import { ModeToggle } from "@/components/mode-toggle"
 
 export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
   return (
@@ -19,7 +19,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
               rel="noreferrer"
               className="font-medium underline underline-offset-4"
             >
-              WebXDAO
+              WebXGuild
             </a>
             . Hosted on{" "}
             <a
@@ -30,9 +30,16 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
             >
               Vercel
             </a>
-            .
+            . Wanna help us? Feel free to contribute on{" "}
+            <a
+              className="font-semibold underline"
+              href="https://github.com/WebXGuild/guildify.com"
+            >
+              GitHub
+            </a>
           </p>
         </div>
+
         <ModeToggle />
       </div>
     </footer>

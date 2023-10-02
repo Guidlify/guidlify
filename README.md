@@ -1,109 +1,64 @@
-# guidlify.com
-Official documentation and landing page for Guidlify
-<div align="center">
-  <a href="https://guidlify.com">
-    <img
-      src="https://res.cloudinary.com/da6pxdlzr/image/upload/v1696496291/q1kx2npk7kwbzxcydvky.png"
-      alt="Guidlify Logo"
-      height="86"
-    />
-  </a>
-  <br />
-  <p>
-    <h3>
-      <b>
-        Guidlify - Open-source Event Hub
-      </b>
-    </h3>
-  </p>
-  <p>
-    <b>
-      Open-source event hub where developers guild meet.
-    </b>
-  </p>
-  <p>
+# Guidlify.com - Official documentation and landing page for Guidlify
 
-[![contributions welcome](https://img.shields.io/badge/contributions-welcome-brightgreen?logo=github)](/) [![Website](https://img.shields.io/website?url=https://guidlify.com&logo=guidlify)](https://guidlify.com)
+Guidlify, where developers guild meet.
 
-  </p>
-  <p>
-    <sub>
-      Built with 💜 by
-      <a href="https://guidlify.com">
-        Guidlify
-      </a>
-    </sub>
-  </p>
-</div>
+## What we use?
 
+- Next.js
+- Shadcn/ui
+- Tailwind
 
-## Installation
+## Getting Started
 
-> Skip all the steps below by using Gitpod, which automates the setup process
+### Skip all the steps below by using Gitpod, which automates the setup process
 
-[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/WebXDAO/WebXGuild)
-
-### Getting started
+[![Open in Gitpod](https://gitpod.io/button/open-in-gitpod.svg)](https://gitpod.io/#https://github.com/WebXGuild/guidlify.com)
 
 1. Fork the repository
 
-Fork the repository on the [fork page](https://github.com/WebXGuild/guidlify/fork).
+Fork the repository on the [fork page](https://github.com/WebXGuild/guidlify.com/fork).
 
-3. Check the node.js version on your local machine
+2. Check the Node.js version on your local machine
 
-Ensure that you have node.js installed. You can check the node.js version by running the following command:
-```sh
-node --version
+Ensure that you have Node.js installed. You can check the Node.js version by running the following command:
 
-# $> v16.14.0
 ```
+node --version
+```
+
 If Node.js is not installed, you can download it from [nodejs.org](https://nodejs.org/en).
 
-3. Clone this repository
+3. Clone this Repository
 
 To clone this repository to your local machine, run the following command:
-```sh
-git clone https://github.com/<your-username>/guidlify
+
+```
+git clone https://github.com/<your-username>/guidlify.com
 ```
 
-4. Navigate to the directory
+4. Navigate to the Directory
 
 Change your working directory to the cloned repository:
-```sh
-cd guidlify
+
+```
+cd guidlify.com
 ```
 
-5. Install dependencies
+5. Install Dependencies
 
 Install the required dependencies by running the following command:
-```sh
-# yarn
-yarn install
 
-# npm
+```
 npm install
-
-# pnpm
-pnpm install
 ```
 
-6.  Setup env
+7. Run Next.js
 
-- Setting up `.env.local`
-- Create a `.env.local` file in root directory and paste the content from `.env.local.example` to `.env.local` file.
-
-> You must create a `.env.local` file similar to [.env.local.example](.env.local.example) file, remember that if you are using your own credentials so data will vary.
-
-7. Run guildify frontend
 Start the Next.js development server with the following command:
-```sh
+
+```
 npm run dev
 ```
-
-## Long Term Vision
-
-Create a platform where developers can find all the events happening around the world.
-Currently [in discussions](https://github.com/orgs/WebXGuild/discussions/19) 🗣.
 
 ### Important Points to Remember
 
