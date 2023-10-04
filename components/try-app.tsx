@@ -29,7 +29,7 @@ export function TryApp({ className }: React.HTMLAttributes<HTMLElement>) {
         available.. Wanna help us? Feel free to contribute on{" "}
         <a
           className="font-semibold underline"
-          href="https://github.com/WebXGuild/guildify.com"
+          href="https://github.com/WebXGuild/guidlify.com"
         >
           GitHub
         </a>
