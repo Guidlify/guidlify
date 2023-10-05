@@ -44,28 +44,35 @@
 ### Getting started
 
 1. Fork the repository
-Fork the repository on the [fork page](https://github.com/WebXDAO/WebXGuild/fork).
+   
+Fork the repository on the [fork page](https://github.com/WebXGuild/guidlify/fork).
 
-2. Check the Node.js version on your local machine
-Ensure that you have Node.js installed. You can check the Node.js version by running the following command:
+3. Check the node.js version on your local machine
+   
+Ensure that you have node.js installed. You can check the node.js version by running the following command:
 ```sh
 node --version
+
+# $> v16.14.0
 ```
 If Node.js is not installed, you can download it from [nodejs.org](https://nodejs.org/en).
 
-3. Clone this Repository
+3. Clone this repository
+   
 To clone this repository to your local machine, run the following command:
 ```sh
-git clone https://github.com/<your-username>/WebXGuild
+git clone https://github.com/<your-username>/guidlify
 ```
 
-4. Navigate to the Directory
+4. Navigate to the directory
+   
 Change your working directory to the cloned repository:
 ```sh
-cd WebXGuild
+cd guidlify
 ```
 
-5. Install Dependencies
+5. Install dependencies
+   
 Install the required dependencies by running the following command:
 ```sh
 # yarn
@@ -78,14 +85,14 @@ npm install
 pnpm install
 ```
 
-6.  Supabase Setup
+6.  Setup env
 
 - Setting up `.env.local`
 - Create a `.env.local` file in root directory and paste the content from `.env.local.example` to `.env.local` file.
 
 > You must create a `.env.local` file similar to [.env.local.example](.env.local.example) file, remember that if you are using your own credentials so data will vary.
 
-7. Run Next.js
+7. Run guildify frontend
 Start the Next.js development server with the following command:
 ```sh
 npm run dev
