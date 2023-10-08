@@ -83,3 +83,11 @@
     text-wrap: balance;
   }
 }
+
+.hover-move-icon .icon {
+  transition: transform 0.2s ease-in-out;
+}
+
+.hover-move-icon:hover .icon {
+  transform: translateX(4px);
+}
