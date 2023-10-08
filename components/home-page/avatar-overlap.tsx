@@ -5,7 +5,7 @@ interface AvatarOverLapProps {
 }
 
 const AvatarOverLap = ({ size = 36 }: AvatarOverLapProps) => {
-  const containerSize = size / 4 + 2
+  const containerSize = size / 4
 
   const avatarImages = [
     "/avatars/photo-1.avif",
@@ -19,9 +19,9 @@ const AvatarOverLap = ({ size = 36 }: AvatarOverLapProps) => {
         {avatarImages.map((src, index) => (
           <div
             key={index}
-            className={`z-${
-              index + 2
-            } h-${containerSize} w-${containerSize} relative flex items-center justify-center rounded-full bg-violet-500 ${
+            className={`z-${index + 2} h-${containerSize + 2} w-${
+              containerSize + 2
+            } relative flex items-center justify-center rounded-full bg-violet-500 ${
               index > 0 ? `ml-[-10px]` : ""
             }`}
           >
