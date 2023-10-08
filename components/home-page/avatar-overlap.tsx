@@ -7,42 +7,33 @@ interface AvatarOverLapProps {
 const AvatarOverLap = ({ size = 36 }: AvatarOverLapProps) => {
   const containerSize = size / 4 + 2
 
+  const avatarImages = [
+    "/avatars/photo-1.avif",
+    "/avatars/photo-3.avif",
+    "/avatars/photo-4.avif",
+  ]
+
   return (
     <div className="mt-2 flex flex-col items-center justify-center">
       <div className="flex">
-        <div
-          className={`z-2 h-${containerSize} w-${containerSize} relative flex items-center justify-center rounded-full bg-violet-500`}
-        >
-          <Image
-            src={"/avatars/photo-1.avif"}
-            alt=""
-            width={size}
-            height={size}
-            className="rounded-full"
-          />
-        </div>
-        <div
-          className={`z-3 h-${containerSize} w-${containerSize} relative ml-[-10px] flex items-center justify-center rounded-full bg-violet-500`}
-        >
-          <Image
-            src={"/avatars/photo-3.avif"}
-            alt=""
-            width={size}
-            height={size}
-            className="rounded-full"
-          />
-        </div>
-        <div
-          className={`z-4 h-${containerSize} w-${containerSize} relative ml-[-10px] flex items-center justify-center rounded-full bg-violet-500`}
-        >
-          <Image
-            src={"/avatars/photo-4.avif"}
-            alt=""
-            width={size}
-            height={size}
-            className="rounded-full"
-          />
-        </div>
+        {avatarImages.map((src, index) => (
+          <div
+            key={index}
+            className={`z-${
+              index + 2
+            } h-${containerSize} w-${containerSize} relative flex items-center justify-center rounded-full bg-violet-500 ${
+              index > 0 ? `ml-[-10px]` : ""
+            }`}
+          >
+            <Image
+              src={src}
+              alt=""
+              width={size}
+              height={size}
+              className="rounded-full"
+            />
+          </div>
+        ))}
       </div>
     </div>
   )
