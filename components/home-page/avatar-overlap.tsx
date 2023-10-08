@@ -8,9 +8,9 @@ const AvatarOverLap = ({ size = 36 }: AvatarOverLapProps) => {
   const containerSize = size / 4
 
   const avatarImages = [
-    "/avatars/photo-1.avif",
-    "/avatars/photo-3.avif",
-    "/avatars/photo-4.avif",
+    "/home-page/avatars/photo-1.avif",
+    "/home-page/avatars/photo-3.avif",
+    "/home-page/avatars/photo-4.avif",
   ]
 
   return (
