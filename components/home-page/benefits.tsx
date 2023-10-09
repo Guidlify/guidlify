@@ -30,8 +30,10 @@ const Benefits = () => {
 
   return (
     <div className="m-12 p-12">
-      <div className="xs:text-xs mb-8 text-center md:text-left">
-        <h1 className="mb-2 text-3xl font-semibold">Enhance Benefits</h1>
+      <div className="text-center xs:mb-16 xs:text-xs sm:mb-8 md:text-left">
+        <h1 className="mb-2 font-semibold xs:text-2xl md:text-3xl">
+          Enhance Benefits
+        </h1>
         <h3 className="font-light md:text-lg">
           Collaborate with the community to make your event successful
         </h3>
@@ -40,18 +42,20 @@ const Benefits = () => {
         {benefitData.map((benefit, idx) => (
           <div key={idx} className="max-w-40 mx-auto sm:mx-0">
             <div className="mb-4">
-              <Image
-                alt={`benefits icon for subcategory ${idx}`}
-                src={`/home-page/benefits-section/${benefit.imageSrc}`}
-                width={100}
-                height={100}
-                className=""
-              />
+              <div className="items-center justify-center xs:flex sm:justify-start">
+                <Image
+                  alt={`benefits icon for subcategory ${idx}`}
+                  src={`/home-page/benefits-section/${benefit.imageSrc}`}
+                  width={100}
+                  height={100}
+                  className=""
+                />
+              </div>
               <div className="mt-4 items-center text-center sm:text-left">
-                <h1 className="mb-2 text-lg font-semibold tracking-wider">
+                <h1 className="xs:text-md mb-2 font-semibold tracking-wider md:text-lg">
                   {benefit.title}
                 </h1>
-                <h3 className="text-sm">{benefit.description}</h3>
+                <h3 className="xs:text-xs md:text-sm">{benefit.description}</h3>
               </div>
             </div>
           </div>
