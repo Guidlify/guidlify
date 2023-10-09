@@ -25,7 +25,7 @@ const HeroPage = () => {
         Where developers guild meet. Find or create your events, launch
         crowdfunding campaign or request sponsorship for your event, and more.
       </p>
-      <div className="cursor-pointer space-x-4 space-y-6">
+      <div className="mx-auto cursor-pointer space-x-4 space-y-6">
         {/* <Link href="/app" className={cn(buttonVariants({ size: "lg" }))}>
               Try Guidlify
             </Link> */}
@@ -39,7 +39,7 @@ const HeroPage = () => {
           GitHub
         </Link>
         <div>
-          <div className="mx-auto flex w-full max-w-sm flex-row space-y-2 pt-2 text-sm tracking-wide text-violet-300">
+          <div className="mx-auto flex w-full max-w-sm space-y-2 pt-2 text-sm tracking-wide text-violet-300 xs:flex-col md:flex-row">
             <AvatarOverLap size={36} />
             <span className="text-md flex items-center justify-center pl-4">
               {" "}
