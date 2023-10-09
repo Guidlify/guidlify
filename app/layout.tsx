@@ -82,7 +82,6 @@ export const metadata: Metadata = {
 export default async function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
       <body
         className={cn(
           "flex min-h-screen flex-col bg-background font-sans antialiased",

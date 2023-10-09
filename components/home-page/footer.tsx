@@ -23,31 +23,38 @@ const Footer = () => {
   return (
     <>
       <div>
-        <div className="flex flex-col justify-evenly lg:flex-row">
-          <div className="col-span-5 lg:col-span-1">
+        <div className="flex flex-col xs:items-center xs:justify-center sm:space-x-12 lg:flex-row lg:items-start lg:space-x-16 xl:space-x-24">
+          <div className="xs:col-span-5 xs:pb-8 lg:col-span-1 lg:pb-0">
             <Image
               src={"/guildify-brand-logo.svg"}
               alt=""
-              width={100}
-              height={40}
+              width={120}
+              height={50}
             />
           </div>
-          {footerData.map((column, index) => (
-            <div key={index} className="col-span-5 space-y-2 lg:col-span-1">
-              <p className="mb-4 font-semibold">{column.title}</p>
-              {column.items.map((item, itemIndex) => (
-                <p
-                  key={itemIndex}
-                  className="cursor-pointer transition duration-200 hover:underline"
-                >
-                  {item}
-                </p>
-              ))}
-            </div>
-          ))}
+          <div className="xs:flex xs:flex-col sm:flex-row sm:space-x-12 md:flex-none lg:space-x-16 xl:space-x-24">
+            {footerData.map((column, index) => (
+              <div
+                key={index}
+                className="space-y-2 xs:col-span-5 xs:pb-12 xs:text-center sm:col-span-2 sm:pb-0 sm:text-left lg:col-span-1"
+              >
+                <p className="mb-5 font-semibold">{column.title}</p>
+                <div className="">
+                  {column.items.map((item, itemIndex) => (
+                    <p
+                      key={itemIndex}
+                      className="cursor-pointer pb-2 transition duration-200 hover:underline"
+                    >
+                      {item}
+                    </p>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
-        <div className="mx-28 mt-10 flex justify-between border-t border-white py-4">
-          <h1 className="flex px-6">
+        <div className="mt-10 flex border-t border-white py-4 xs:mx-10 xs:flex-col-reverse xs:items-center xs:justify-center sm:flex-row sm:justify-between md:mx-28">
+          <h1 className="flex px-6 xs:pt-4 sm:pt-2">
             <div className="mr-2">
               <Image
                 alt="dicord logo icon"
@@ -65,7 +72,9 @@ const Footer = () => {
               />
             </div>
           </h1>
-          <h1 className="px-6">Copyright © 2023 Guidlify</h1>
+          <h1 className="xs:text-md px-6 sm:text-sm">
+            Copyright © 2023 Guidlify
+          </h1>
         </div>
       </div>
     </>

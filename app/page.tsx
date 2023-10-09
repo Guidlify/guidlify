@@ -18,7 +18,7 @@ const IndexPage = () => {
       <section className="grow space-y-6 pb-8 pt-6 md:pt-10">
         <Benefits />
       </section>
-      <section className="grow pb-16">
+      <section className="grow pb-24">
         <ContactUs />
       </section>
       <section className="grow space-y-6 pb-8 pt-6 md:pt-10">
