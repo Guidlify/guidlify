@@ -62,8 +62,8 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
 				<ModeToggle />
 			</div>
 
-			<div className="container flex flex-col items-center justify-between gap-4 md:flex-row  md:border-t md:border-muted-foreground py-4">
-				<h1 className="flex px-6">
+			<div className="container flex flex-col items-center justify-between gap-4 md:flex-row  md:border-t md:border-muted-foreground/30 py-4">
+				<h1 className="flex">
 					<div className="mr-2">
 						<Icons.Discord className="h-6 w-6 text-[#5865F2]" />
 					</div>
@@ -71,7 +71,7 @@ export function SiteFooter({ className }: React.HTMLAttributes<HTMLElement>) {
 						<Icons.X className="h-5 w-5" />
 					</div>
 				</h1>
-				<h1 className="xs:text-md px-6 sm:text-sm">
+				<h1 className="xs:text-md sm:text-sm">
 					Copyright © 2023 Guidlify
 				</h1>
 			</div>
