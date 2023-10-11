@@ -39,9 +39,9 @@ const HeroPage = () => {
           GitHub
         </Link>
         <div>
-          <div className="mx-auto flex w-full max-w-sm space-y-2 pt-2 text-sm tracking-wide text-violet-300 xs:flex-col md:flex-row">
+          <div className="mx-auto flex w-full max-w-sm space-y-2 pt-2 text-sm tracking-wide text-slate-600 dark:text-violet-300 xs:flex-col md:flex-row">
             <AvatarOverLap size={36} />
-            <span className="text-md flex items-center justify-center pl-4">
+            <span className="text-md flex items-center justify-center pl-4 text-muted-foreground">
               {" "}
               ...1k and others love it here!
             </span>

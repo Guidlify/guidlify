@@ -19,7 +19,7 @@ const AvatarOverLap = ({ size = 36 }: AvatarOverLapProps) => {
             key={index}
             className={`z-${
               index + 2
-            } relative flex h-11 w-11 items-center justify-center rounded-full bg-violet-500 ${
+            } relative flex h-11 w-11 items-center justify-center rounded-full bg-slate-500 dark:bg-violet-400 ${
               index > 0 ? `ml-[-10px]` : ""
             }`}
           >

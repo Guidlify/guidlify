@@ -1,5 +1,7 @@
 import Image from "next/legacy/image"
 
+import { Icons } from "../icons"
+
 const Footer = () => {
   const footerData = [
     {
@@ -53,23 +55,13 @@ const Footer = () => {
             ))}
           </div>
         </div>
-        <div className="mt-10 flex border-t border-white py-4 xs:mx-10 xs:flex-col-reverse xs:items-center xs:justify-center sm:flex-row sm:justify-between md:mx-28">
+        <div className="mt-10 flex border-t border-muted-foreground py-4 xs:mx-10 xs:flex-col-reverse xs:items-center xs:justify-center sm:flex-row sm:justify-between md:mx-28">
           <h1 className="flex px-6 xs:pt-4 sm:pt-2">
             <div className="mr-2">
-              <Image
-                alt="dicord logo icon"
-                src={"/home-page/contact/discord.svg"}
-                width={25}
-                height={25}
-              />
+              <Icons.Discord className="h-6 w-6 text-[#5865F2]" />
             </div>
             <div className="mr-2">
-              <Image
-                alt="twitter logo icon"
-                src={"/home-page/contact/twitter.svg"}
-                width={25}
-                height={25}
-              />
+              <Icons.X className="h-5 w-5" />
             </div>
           </h1>
           <h1 className="xs:text-md px-6 sm:text-sm">
