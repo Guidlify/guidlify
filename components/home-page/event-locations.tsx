@@ -46,38 +46,48 @@ const eventLocationsData: eventLocationsDataProps[] = [
 ]
 
 const EventLocations = () => {
-  const [shuffledData, setShuffledData] = useState<eventLocationsDataProps[]>(
-    []
-  )
+  const [shuffledData, setShuffledData] = useState<
+    Array<Array<eventLocationsDataProps>>
+  >([])
+
+  const numRows = 2
+  const itemsPerRow = Math.ceil(eventLocationsData.length / numRows)
 
   useEffect(() => {
-    // Shuffle the data when the component mounts
+    // shuffle the data when component mounts
     shuffleArray()
   }, [])
 
   const shuffleArray = () => {
-    // Make a copy of the initial data and shuffle it
-    const shuffledVal = [...eventLocationsData]
-    for (let i = shuffledVal.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1))
-      ;[shuffledVal[i], shuffledVal[j]] = [shuffledVal[j], shuffledVal[i]]
-    }
-    setShuffledData(shuffledVal)
+    const shuffledRows = Array.from({ length: numRows }, () => {
+      const shuffledVal = [...eventLocationsData]
+      for (let i = shuffledVal.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1))
+        ;[shuffledVal[i], shuffledVal[j]] = [shuffledVal[j], shuffledVal[i]]
+      }
+      return shuffledVal
+    })
+    setShuffledData(shuffledRows)
   }
 
   return (
-    <div className="flex flex-row space-x-5 overflow-hidden">
-      {shuffledData.map((item, index) => (
-        <div className="relative shrink-0" key={index}>
-          <Image
-            alt={item.alt}
-            src={`/home-page/event-locations/${item.src}`}
-            height={303}
-            width={463}
-            className="opacity-60"
-            priority={true}
-          />
-          {/* <ImageCarousel
+    <div>
+      {Array.from({ length: numRows }).map((_, rowIndex) => (
+        <div
+          key={rowIndex}
+          className="flex flex-row space-x-5 overflow-hidden pb-10"
+        >
+          {shuffledData[rowIndex]?.map((item, index) => (
+            <div className="relative shrink-0" key={index}>
+              <Image
+                alt={item.alt}
+                src={`/home-page/event-locations/${item.src}`}
+                height={303}
+                width={463}
+                className="opacity-60"
+                priority={true}
+              />
+              {/* <ImageCarousel
             images={[
               {
                 src: `/home-page/event-locations/${item.src}`,
@@ -86,22 +96,26 @@ const EventLocations = () => {
               },
             ]}
           /> */}
-          <div className="absolute inset-x-0 bottom-0 bg-gradient-to-b from-transparent to-white px-6 pb-12 text-black dark:to-[#030711]">
-            {/* bg-gradient-to-b from-transparent to-white p-6 */}
-            {item.heading === undefined ? (
-              <div className="flex pb-2 text-lg font-semibold tracking-wide">
-                <span className="pr-2">
-                  <ChevronsRight />
-                </span>{" "}
-                {item.subtext}
+              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-b from-transparent to-white px-6 pb-12 text-black dark:to-[#030711]">
+                {/* bg-gradient-to-b from-transparent to-white p-6 */}
+                {item.heading === undefined ? (
+                  <div className="flex pb-2 text-lg font-semibold tracking-wide">
+                    <span className="pr-2">
+                      <ChevronsRight />
+                    </span>{" "}
+                    {item.subtext}
+                  </div>
+                ) : (
+                  <div className="pb-6 pl-4 pr-16 text-lg font-semibold">
+                    <div className="pb-4 text-4xl font-bold">
+                      {item.heading}
+                    </div>{" "}
+                    <div>{item.subtext}</div>
+                  </div>
+                )}
               </div>
-            ) : (
-              <div className="pb-6 pl-4 pr-16 text-lg font-semibold">
-                <div className="pb-4 text-4xl font-bold">{item.heading}</div>{" "}
-                <div>{item.subtext}</div>
-              </div>
-            )}
-          </div>
+            </div>
+          ))}
         </div>
       ))}
     </div>
