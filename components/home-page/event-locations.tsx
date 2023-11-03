@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useEffect, useState } from "react"
 import Image from "next/legacy/image"
 import { ChevronsRight } from "lucide-react"
 
@@ -46,9 +46,28 @@ const eventLocationsData: eventLocationsDataProps[] = [
 ]
 
 const EventLocations = () => {
+  const [shuffledData, setShuffledData] = useState<eventLocationsDataProps[]>(
+    []
+  )
+
+  useEffect(() => {
+    // Shuffle the data when the component mounts
+    shuffleArray()
+  }, [])
+
+  const shuffleArray = () => {
+    // Make a copy of the initial data and shuffle it
+    const shuffledVal = [...eventLocationsData]
+    for (let i = shuffledVal.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1))
+      ;[shuffledVal[i], shuffledVal[j]] = [shuffledVal[j], shuffledVal[i]]
+    }
+    setShuffledData(shuffledVal)
+  }
+
   return (
     <div className="flex flex-row space-x-5 overflow-hidden">
-      {eventLocationsData.map((item, index) => (
+      {shuffledData.map((item, index) => (
         <div className="relative shrink-0" key={index}>
           <Image
             alt={item.alt}
@@ -56,6 +75,7 @@ const EventLocations = () => {
             height={303}
             width={463}
             className="opacity-60"
+            priority={true}
           />
           {/* <ImageCarousel
             images={[
