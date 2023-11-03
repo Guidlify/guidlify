@@ -91,3 +91,44 @@
 .hover-move-icon:hover .icon {
   transform: translateX(4px);
 }
+
+.image-container {
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
+}
+
+.event-locations-container {
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+
+.row {
+  animation: horizontal-slide 20s linear infinite;
+}
+
+.row-1 {
+  animation-direction: reverse;
+}
+
+.row-2 {
+  animation-direction: normal;
+}
+
+.card {
+  position: relative;
+  width: 463px;
+  height: 303px;
+}
+
+@keyframes horizontal-slide {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.card:hover .row {
+  animation-play-state: paused;
+}

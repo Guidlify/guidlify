@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react"
 import Image from "next/legacy/image"
 import { ChevronsRight } from "lucide-react"
 
-// import ImageCarousel from "./image-carousel"
-
 interface eventLocationsDataProps {
   src: string
   alt: string
@@ -71,14 +69,14 @@ const EventLocations = () => {
   }
 
   return (
-    <div>
+    <div className="event-locations-container">
       {Array.from({ length: numRows }).map((_, rowIndex) => (
         <div
           key={rowIndex}
-          className="flex flex-row space-x-5 overflow-hidden pb-10"
+          className={`row row-${rowIndex} flex flex-row space-x-5 overflow-hidden pb-10`}
         >
           {shuffledData[rowIndex]?.map((item, index) => (
-            <div className="relative shrink-0" key={index}>
+            <div className="card relative shrink-0" key={index}>
               <Image
                 alt={item.alt}
                 src={`/home-page/event-locations/${item.src}`}
@@ -87,17 +85,7 @@ const EventLocations = () => {
                 className="opacity-60"
                 priority={true}
               />
-              {/* <ImageCarousel
-            images={[
-              {
-                src: `/home-page/event-locations/${item.src}`,
-                alt: item.alt,
-                legend: item.subtext,
-              },
-            ]}
-          /> */}
-              <div className="absolute inset-x-0 bottom-0 bg-gradient-to-b from-transparent to-white px-6 pb-12 text-black dark:to-[#030711]">
-                {/* bg-gradient-to-b from-transparent to-white p-6 */}
+              <div className="card-content absolute inset-x-0 bottom-0 bg-gradient-to-b from-transparent to-white px-6 pb-12 text-black dark:to-[#030711]">
                 {item.heading === undefined ? (
                   <div className="flex pb-2 text-lg font-semibold tracking-wide">
                     <span className="pr-2">
