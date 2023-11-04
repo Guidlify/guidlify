@@ -137,6 +137,6 @@
   }
 }
 
-.card:hover .row {
+.row:hover {
   animation-play-state: paused;
 }
