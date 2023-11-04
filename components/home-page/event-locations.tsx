@@ -44,38 +44,39 @@ const eventLocationsData: eventLocationsDataProps[] = [
 ]
 
 const EventLocations = () => {
-  const [shuffledData, setShuffledData] = useState<
-    Array<Array<eventLocationsDataProps>>
-  >([])
-
   const numRows = 2
+  const queueSize = 6 // Number of images in the queue
+  const [imageQueues, setImageQueues] = useState<
+    Array<Array<eventLocationsDataProps>>
+  >(Array.from({ length: numRows }, () => eventLocationsData))
 
   useEffect(() => {
-    shuffleArray()
+    startImageQueues()
   }, [])
 
-  const shuffleArray = () => {
-    const shuffledRows = Array.from({ length: numRows }, () => {
-      const shuffledVal = [...eventLocationsData]
-      for (let i = shuffledVal.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1))
-        ;[shuffledVal[i], shuffledVal[j]] = [shuffledVal[j], shuffledVal[i]]
-      }
-      return shuffledVal
-    })
-    setShuffledData(shuffledRows)
+  const startImageQueues = () => {
+    setInterval(() => {
+      setImageQueues((prevImageQueues) => {
+        const updatedImageQueues = prevImageQueues.map((queue) => {
+          const [firstImage, ...restImages] = queue
+          return [...restImages, firstImage]
+        })
+
+        return updatedImageQueues
+      })
+    }, 15000) // Adjust the interval delay as per your preference
   }
 
   return (
     <div className="event-locations-container">
-      {Array.from({ length: numRows }).map((_, rowIndex) => (
+      {imageQueues.map((queue, rowIndex) => (
         <div
           key={rowIndex}
           className={`row row-${rowIndex} flex flex-row space-x-5 pb-10`}
         >
-          {shuffledData[rowIndex]?.map((item, index) => (
+          {queue.map((item, index) => (
             <div
-              className="card relative shrink-0 hover:cursor-pointer"
+              className="card relative shrink-0 transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:shadow-slate-800"
               key={index}
             >
               <Image
