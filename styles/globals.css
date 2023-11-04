@@ -95,7 +95,6 @@
 .image-container {
   background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 100%);
 }
-
 .event-locations-container {
   overflow: hidden;
   position: relative;
@@ -122,10 +121,19 @@
 
 @keyframes horizontal-slide {
   0% {
-    transform: translateX(100%);
+    transform: translateX(0);
   }
   100% {
     transform: translateX(-100%);
+  }
+}
+
+@keyframes horizontal-slide-reverse {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
   }
 }
 

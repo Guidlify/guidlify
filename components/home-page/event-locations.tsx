@@ -49,10 +49,8 @@ const EventLocations = () => {
   >([])
 
   const numRows = 2
-  const itemsPerRow = Math.ceil(eventLocationsData.length / numRows)
 
   useEffect(() => {
-    // shuffle the data when component mounts
     shuffleArray()
   }, [])
 
@@ -73,7 +71,7 @@ const EventLocations = () => {
       {Array.from({ length: numRows }).map((_, rowIndex) => (
         <div
           key={rowIndex}
-          className={`row row-${rowIndex} flex flex-row space-x-5 overflow-hidden pb-10`}
+          className={`row row-${rowIndex} flex flex-row space-x-5 pb-10`}
         >
           {shuffledData[rowIndex]?.map((item, index) => (
             <div className="card relative shrink-0" key={index}>
