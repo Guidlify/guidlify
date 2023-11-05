@@ -75,7 +75,10 @@ const EventLocations = () => {
           className={`row row-${rowIndex} flex flex-row space-x-5 pb-10`}
         >
           {shuffledData[rowIndex]?.map((item, index) => (
-            <div className="card relative shrink-0" key={index}>
+            <div
+              className="card relative shrink-0 transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:shadow-slate-800"
+              key={index}
+            >
               <Image
                 alt={item.alt}
                 src={`/home-page/event-locations/${item.src}`}
