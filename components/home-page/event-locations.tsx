@@ -44,41 +44,38 @@ const eventLocationsData: eventLocationsDataProps[] = [
 ]
 
 const EventLocations = () => {
-  const numRows = 2
-  const queueSize = 6 // Number of images in the queue
-  const [imageQueues, setImageQueues] = useState<
+  const [shuffledData, setShuffledData] = useState<
     Array<Array<eventLocationsDataProps>>
-  >(Array.from({ length: numRows }, () => eventLocationsData))
+  >([])
+
+  const numRows = 2
 
   useEffect(() => {
-    startImageQueues()
-  }, [])
-
-  const startImageQueues = () => {
-    setInterval(() => {
-      setImageQueues((prevImageQueues) => {
-        const updatedImageQueues = prevImageQueues.map((queue) => {
-          const [firstImage, ...restImages] = queue
-          return [...restImages, firstImage]
-        })
-
-        return updatedImageQueues
+    const shuffleArray = () => {
+      const shuffledRows = Array.from({ length: numRows }, () => {
+        const shuffledVal = [...eventLocationsData]
+        for (let i = shuffledVal.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1))
+          ;[shuffledVal[i], shuffledVal[j]] = [shuffledVal[j], shuffledVal[i]]
+        }
+        return shuffledVal
       })
-    }, 15000) // Adjust the interval delay as per your preference
-  }
+      const duplicatedData = shuffledRows.map((row) => [...row, ...row])
+      setShuffledData(duplicatedData)
+    }
+
+    shuffleArray()
+  }, [])
 
   return (
     <div className="event-locations-container">
-      {imageQueues.map((queue, rowIndex) => (
+      {Array.from({ length: numRows }).map((_, rowIndex) => (
         <div
           key={rowIndex}
           className={`row row-${rowIndex} flex flex-row space-x-5 pb-10`}
         >
-          {queue.map((item, index) => (
-            <div
-              className="card relative shrink-0 transition-all duration-300 hover:scale-105 hover:cursor-pointer hover:shadow-slate-800"
-              key={index}
-            >
+          {shuffledData[rowIndex]?.map((item, index) => (
+            <div className="card relative shrink-0" key={index}>
               <Image
                 alt={item.alt}
                 src={`/home-page/event-locations/${item.src}`}
@@ -87,20 +84,20 @@ const EventLocations = () => {
                 className="opacity-60"
                 priority={true}
               />
-              <div className="card-content absolute inset-x-0 bottom-0 bg-gradient-to-b from-transparent to-white px-6 pb-12 text-black dark:to-[#030711]">
+              <div className="card-content absolute inset-x-0 bottom-[-2px] bg-gradient-to-b from-transparent to-white px-6 pb-10 text-black dark:to-[#030711]">
                 {item.heading === undefined ? (
-                  <div className="flex pb-2 text-lg font-semibold tracking-wide">
+                  <div className="text-md flex pb-2 font-semibold tracking-wide md:text-lg">
                     <span className="pr-2">
                       <ChevronsRight />
                     </span>{" "}
                     {item.subtext}
                   </div>
                 ) : (
-                  <div className="pb-6 pl-4 pr-16 text-lg font-semibold">
-                    <div className="pb-4 text-4xl font-bold">
+                  <div className="pb-2 pl-4 pr-16 font-semibold md:pb-6">
+                    <div className="pb-4 text-xl font-bold sm:text-2xl md:text-3xl xl:text-4xl">
                       {item.heading}
                     </div>{" "}
-                    <div>{item.subtext}</div>
+                    <div className="text-xs md:text-sm">{item.subtext}</div>
                   </div>
                 )}
               </div>

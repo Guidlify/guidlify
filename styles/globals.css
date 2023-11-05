@@ -102,7 +102,7 @@
 }
 
 .row {
-  animation: horizontal-slide 20s linear infinite;
+  animation: horizontal-slide 30s linear infinite;
 }
 
 .row-1 {
@@ -114,31 +114,52 @@
 }
 
 .card {
-  position: relative;
   width: 463px;
   height: 303px;
 }
 
-@keyframes horizontal-slide {
+/* @keyframes horizontal-slide {
   0% {
     transform: translateX(0);
   }
   100% {
     transform: translateX(-100%);
   }
-}
+} */
 
-@keyframes horizontal-slide-reverse {
-  0% {
-    transform: translateX(100%);
-  }
+@keyframes horizontal-slide {
   100% {
-    transform: translateX(0);
+    transform: translateX(calc(-360px * 10));
   }
 }
 
 .row:hover {
   animation-play-state: paused;
+}
+
+@media (min-width: 768px) and (max-width: 1024px) {
+  .card {
+    width: 400px;
+    height: 261px;
+  }
+}
+
+@media (min-width: 640px) and (max-width: 767px) {
+  .card {
+    width: 350px;
+    height: 229px;
+  }
+}
+
+@media (min-width: 200px) and (max-width: 640px) {
+  .card {
+    width: 300px;
+    height: 196px;
+  }
+
+  .row {
+    animation-duration: 40s;
+  }
 }
 
 /* .box-card-shadow {
