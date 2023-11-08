@@ -125,7 +125,11 @@ div.slider ul.lane li.event-location {
 #infinite div.barrier::before {
   top: 0;
   left: 0;
-  background: linear-gradient(to right, #ffffff 0%, rgba(255, 255, 255, 0) 100%);
+  background: linear-gradient(
+    to right,
+    #ffffff 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
 }
 
 #infinite div.barrier::after {
@@ -167,12 +171,20 @@ div.slider ul.lane li.event-location {
     width: 400px;
     height: 261px;
   }
+
+  #infinite div.barrier ul.lane {
+    width: calc(360px * 14);
+  }
 }
 
 @media (min-width: 640px) and (max-width: 767px) {
   .card {
     width: 350px;
     height: 229px;
+  }
+
+  #infinite div.barrier ul.lane {
+    width: calc(360px * 12);
   }
 }
 
@@ -184,6 +196,10 @@ div.slider ul.lane li.event-location {
 
   .row {
     animation-duration: 40s;
+  }
+
+  #infinite div.barrier ul.lane {
+    width: calc(360px * 10.5);
   }
 }
 

@@ -12,7 +12,7 @@ const IndexPage = () => {
       <section className="grow space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-28">
         <HeroPage />
       </section>
-      <section className="grow space-y-6 pb-0 pt-6 md:pb-12 md:pt-10 lg:py-16">
+      <section className="grow space-y-6 pb-14 pt-6 md:pb-12 md:pt-10 lg:py-16">
         <EventLocations />
       </section>
       <section className="grow space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-28">
