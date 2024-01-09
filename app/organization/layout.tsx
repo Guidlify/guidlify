@@ -26,7 +26,7 @@ export default function HomeLayout({
     <html lang="en" suppressHydrationWarning>
       <body
         className={cn(
-          "min-h-screen font-sans dark:bg-black",
+          "min-h-screen font-sans",
           fontSans.variable,
           fontHeading.variable
         )}
