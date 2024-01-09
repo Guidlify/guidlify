@@ -19,6 +19,8 @@ import { ThemeProvider } from "@/components/theme-provider"
 
 import MirageProvider from "./mirage-provider"
 
+import { headers } from 'next/headers';
+
 export const dynamic = "force-dynamic"
 
 const fontSans = FontSans({
@@ -37,7 +39,7 @@ interface RootLayoutProps {
 }
 
 export const metadata: Metadata = {
-  metadataBase: null,
+  metadataBase: new URL("http://localhost:3000") || new URL(`${siteConfig.url}`),
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
@@ -78,14 +80,16 @@ export const metadata: Metadata = {
   },
   icons: {
     icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
+    shortcut: "/favicon.ico",
     apple: "/apple-touch-icon.png",
   },
   // manifest: `${siteConfig.url}/site.webmanifest`,
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  // const homeRoute = usePathname()
+  const headersList = headers();
+  const fullUrl = headersList.get('referer') || "";
+  const pathname = new URL(fullUrl).pathname;
 
   const supabase = supabaseServer()
   const {
@@ -93,7 +97,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
   } = await supabase.auth.getSession()
 
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning={true}>
       <head />
       <body
         className={cn(
@@ -103,16 +107,16 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          {/* {homeRoute === "/" && (
+          {pathname === "/" && (
             <header className="container z-40 bg-background">
               <div className="flex h-20 items-center justify-between py-6">
                 <MainNav items={landingConfig.mainNav} />
                 <AuthNav session={session} items={landingConfig.privateNav} />
               </div>
             </header>
-          )} */}
+          )}
           <div className="grow">{children}</div>
-          {/* {homeRoute === "/" && <SiteFooter></SiteFooter>} */}
+          {pathname === "/" && <SiteFooter></SiteFooter>}
           <TailwindIndicator />
           <Toaster />
         </ThemeProvider>
