@@ -140,8 +140,8 @@ const OrganizationPage = () => {
           </div>
           <div className="w-894 mr-4 flex-col">
             <h1 className="pb-4 text-xl font-bold">Upcoming Events</h1>
-            {eventData.map((eventInfo) => (
-              <div className="bg-image-container mb-8 h-[114px] w-[800px] rounded-lg p-4 text-white">
+            {eventData.map((eventInfo, index) => (
+              <div key={index} className="bg-image-container mb-8 h-[114px] w-[800px] rounded-lg p-4 text-white">
                 <EventName
                   title={eventInfo.title}
                   description={eventInfo.description}
@@ -159,6 +159,7 @@ const OrganizationPage = () => {
           <div className="mt-8 flex justify-evenly space-x-5">
             {eventHostedData.map((event, index) => (
               <BlogPost
+                key={index}
                 imageSrc={event.imageSrc}
                 tag={event.tag}
                 title={event.title}

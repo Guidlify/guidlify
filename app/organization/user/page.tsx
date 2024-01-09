@@ -170,8 +170,8 @@ const UserPage = () => {
         <div className="ml-[-80px] mt-16 flex justify-evenly">
           <div className="flex flex-col">
             <h1 className="pb-4 text-xl font-bold">Events Interested In</h1>
-            {eventData.map((eventInfo) => (
-              <div className="mb-8 h-[84px] w-[480px] rounded-lg bg-gray-200 p-4 text-black dark:bg-white">
+            {eventData.map((eventInfo, index) => (
+              <div key={index} className="mb-8 h-[84px] w-[480px] rounded-lg bg-gray-200 p-4 text-black dark:bg-white">
                 <div className="flex">
                   <div className="w-74 flex-col pl-2 pr-12">
                     <div className="pb-1 text-sm font-bold">
@@ -207,6 +207,7 @@ const UserPage = () => {
           <div className="mt-8 flex justify-evenly space-x-5">
             {eventHostedData.map((event, index) => (
               <BlogPost
+                key={index}
                 imageSrc={event.imageSrc}
                 tag={event.tag}
                 title={event.title}
