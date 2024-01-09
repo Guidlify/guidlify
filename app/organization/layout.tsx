@@ -23,17 +23,15 @@ export default function HomeLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" suppressHydrationWarning>
-      <body
-        className={cn(
-          "min-h-screen font-sans",
-          fontSans.variable,
-          fontHeading.variable
-        )}
-      >
-        <MainNav />
-        {children}
-      </body>
-    </html>
+    <div
+      className={cn(
+        "min-h-screen font-sans",
+        fontSans.variable,
+        fontHeading.variable
+      )}
+    >
+      <MainNav />
+      {children}
+    </div>
   )
 }
