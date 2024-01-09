@@ -83,3 +83,10 @@
     text-wrap: balance;
   }
 }
+
+.bg-image-container {
+  background-image: url("../public/organization/banner.png");
+  background-size: cover;
+  background-position: center;
+  position: relative;
+}

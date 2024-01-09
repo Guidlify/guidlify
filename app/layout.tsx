@@ -1,28 +1,23 @@
-import { Inter as FontSans } from "next/font/google";
-import localFont from "next/font/local";
+import { Inter as FontSans } from "next/font/google"
+import localFont from "next/font/local"
 
+import "@/styles/globals.css"
+import { Metadata } from "next"
 
+// import { usePathname } from "next/navigation"
 
-import "@/styles/globals.css";
-import { Metadata } from "next";
+import { landingConfig } from "@/config/landing"
+import { siteConfig } from "@/config/site"
+import { supabaseServer } from "@/lib/supabase-server"
+import { cn } from "@/lib/utils"
+import { Toaster } from "@/components/ui/toaster"
+import AuthNav from "@/components/auth-nav"
+import { MainNav } from "@/components/main-nav"
+import { SiteFooter } from "@/components/site-footer"
+import { TailwindIndicator } from "@/components/tailwind-indicator"
+import { ThemeProvider } from "@/components/theme-provider"
 
-
-
-import { landingConfig } from "@/config/landing";
-import { siteConfig } from "@/config/site";
-import { supabaseServer } from "@/lib/supabase-server";
-import { cn } from "@/lib/utils";
-import { Toaster } from "@/components/ui/toaster";
-import AuthNav from "@/components/auth-nav";
-import { MainNav } from "@/components/main-nav";
-import { SiteFooter } from "@/components/site-footer";
-import { TailwindIndicator } from "@/components/tailwind-indicator";
-import { ThemeProvider } from "@/components/theme-provider";
-
-
-
-import MirageProvider from "./mirage-provider";
-
+import MirageProvider from "./mirage-provider"
 
 export const dynamic = "force-dynamic"
 
@@ -90,6 +85,8 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
+  // const homeRoute = usePathname()
+
   const supabase = supabaseServer()
   const {
     data: { session },
@@ -106,14 +103,16 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         )}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <header className="container z-40 bg-background">
-            <div className="flex h-20 items-center justify-between py-6">
-              <MainNav items={landingConfig.mainNav} />
-              <AuthNav session={session} items={landingConfig.privateNav} />
-            </div>
-          </header>
+          {/* {homeRoute === "/" && (
+            <header className="container z-40 bg-background">
+              <div className="flex h-20 items-center justify-between py-6">
+                <MainNav items={landingConfig.mainNav} />
+                <AuthNav session={session} items={landingConfig.privateNav} />
+              </div>
+            </header>
+          )} */}
           <div className="grow">{children}</div>
-          <SiteFooter></SiteFooter>
+          {/* {homeRoute === "/" && <SiteFooter></SiteFooter>} */}
           <TailwindIndicator />
           <Toaster />
         </ThemeProvider>
