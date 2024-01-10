@@ -4,9 +4,9 @@ import AvatarOrganization from "@/components/organization/avatar"
 import BadgeSection from "@/components/organization/badge-section"
 import BannerOrganization from "@/components/organization/banner"
 import CreateEvent from "@/components/organization/create-event"
+import EventList from "@/components/organization/event-list"
 import EventName from "@/components/organization/event-name"
 import ProfileInfo from "@/components/organization/profile-info"
-import EventList from "@/components/organization/event-list"
 
 const eventData = [
   {
@@ -88,7 +88,7 @@ const OrganizationPage = () => {
     <div className="container mb-20">
       <BannerOrganization url="/organization/banner.png" />
       <div className="">
-        <div className="relative mb-4 flex items-center justify-center xs:mt-[-60px] md:mt-[-100px]">
+        <div className="relative mb-4 mt-[-60px] flex items-center justify-center md:mt-[-100px]">
           <AvatarOrganization url="/organization/banner.png" />
         </div>
         <div className="flex flex-col items-center justify-center">
@@ -99,7 +99,7 @@ const OrganizationPage = () => {
             description="At WebX DAO, we're dedicated to staying at the forefront of the
             ever-evolving web. From web3 and web5 to the metaverse and DeFi!"
           />
-          <div className="flex w-full items-end xs:mt-8 xs:justify-center md:mt-[-30px] md:justify-end">
+          <div className="xs:justify-center mt-4 flex items-center md:mt-0 md:mt-[-30px] md:w-full md:justify-end">
             <CreateEvent />
           </div>
         </div>
@@ -120,7 +120,10 @@ const OrganizationPage = () => {
           <div className="w-894 mr-4 flex-col">
             <h1 className="pb-4 text-xl font-bold">Upcoming Events</h1>
             {eventData.map((eventInfo, index) => (
-              <div key={index} className="bg-image-container mb-8 h-[114px] w-[800px] rounded-lg p-4 text-white">
+              <div
+                key={index}
+                className="bg-image-container mb-8 h-[114px] w-[800px] rounded-lg p-4 text-white"
+              >
                 <EventName
                   title={eventInfo.title}
                   description={eventInfo.description}

@@ -12,7 +12,7 @@ const AvatarOrganization: React.FC<{
   const color: Color = stateColor
 
   return (
-    <div className="boder-2 relative rounded-full border-[4px] border-white dark:border-black xs:w-28 md:w-48">
+    <div className="xs:w-full relative w-28 rounded-full border border-[4px] border-white dark:border-background md:w-48">
       <Image
         alt="pic"
         src={"/organization/avatar.png"}
@@ -22,7 +22,7 @@ const AvatarOrganization: React.FC<{
       />
       <div
         className={cn(
-          "absolute rounded-full xs:bottom-5 xs:right-0 xs:h-[20px] xs:w-[20px] md:bottom-10 md:right-0 md:h-[30px] md:w-[30px]",
+          "absolute bottom-5 right-0 h-[20px] w-[20px] rounded-full md:bottom-10 md:right-0 md:h-[30px] md:w-[30px]",
           {
             "bg-blue-500": color === "blue",
             "bg-yellow-500": color === "yellow",
