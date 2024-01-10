@@ -21,17 +21,17 @@ const BlogPost: React.FC<BlogPostProps> = ({
   orgName,
 }) => {
   return (
-    <div className="flex">
-      <div className="ml-4 mr-10 mt-4 w-[235px]">
+    <div className="mb-6 flex flex-col sm:mx-4 sm:flex-row md:mb-1 lg:mx-0">
+      <div className="mx-4 my-0 sm:w-[350px] md:my-4 lg:w-[235px]">
         <Image
           alt="event hosted"
-          src={`${imageSrc}`}
+          src={imageSrc}
           width={300}
           height={300}
           className="rounded-sm"
         />
       </div>
-      <div className="flex w-[236px] flex-col space-y-1 pt-5">
+      <div className="ml-4 flex w-[350px] flex-col space-y-1 pt-5 sm:ml-0 sm:w-full lg:w-[236px]">
         <div
           className={cn("mb-1 w-24 rounded-sm bg-violet-600 p-2 pl-3 text-xs", {
             "w-16": tag === "Popular",

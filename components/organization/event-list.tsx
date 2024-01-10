@@ -1,7 +1,6 @@
+import React from "react"
 
-import React from 'react';
 import BlogPost from "@/components/organization/blog-post"
-
 
 const eventHostedData = [
   {
@@ -24,10 +23,9 @@ const eventHostedData = [
   },
 ]
 
-
 const EventList: React.FC = () => {
   return (
-    <div className="mt-8 flex justify-evenly space-x-5">
+    <div className="mt-8 flex flex-col justify-center space-y-5 md:justify-evenly md:space-y-4 lg:flex-row lg:space-y-0">
       {eventHostedData.map((event, index) => (
         <BlogPost
           key={index}
@@ -40,7 +38,7 @@ const EventList: React.FC = () => {
         />
       ))}
     </div>
-  );
-};
+  )
+}
 
-export default EventList;
+export default EventList
