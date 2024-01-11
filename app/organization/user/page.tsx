@@ -5,9 +5,8 @@ import Link from "next/link"
 import AvatarOrganization from "@/components/organization/avatar"
 import BadgeSection from "@/components/organization/badge-section"
 import BannerOrganization from "@/components/organization/banner"
-import BlogPost from "@/components/organization/blog-post"
 import CreateEvent from "@/components/organization/create-event"
-import EventName from "@/components/organization/event-name"
+import EventList from "@/components/organization/event-list"
 import ProfileInfo from "@/components/organization/profile-info"
 
 const eventData = [
@@ -120,33 +119,12 @@ const badgeSponsorData = {
   ],
 }
 
-const eventHostedData = [
-  {
-    imageSrc: "/organization/team.png",
-    tag: "Most popular",
-    title: "Many desktop publishing packages and web page",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas quis eros sed risus sollicitudin fringilla dictum in metus.",
-    avatarSrc: "/organization/avatar.png",
-    organizationName: "WebXGuild",
-  },
-  {
-    imageSrc: "/organization/team.png",
-    tag: "Popular",
-    title: "Many desktop publishing packages and web page",
-    description:
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas quis eros sed risus sollicitudin fringilla dictum in metus.",
-    avatarSrc: "/organization/avatar.png",
-    organizationName: "WebXGuild",
-  },
-]
-
 const UserPage = () => {
   return (
     <div className="container mb-20">
       <BannerOrganization url="/organization/banner.png" />
       <div className="">
-        <div className="relative mb-0 flex items-center justify-center xs:mt-[-60px] md:mt-[-100px]">
+        <div className="relative mb-0 mt-[-60px] flex items-center justify-center md:mt-[-100px]">
           <AvatarOrganization
             url="/organization/banner.png"
             stateColor="yellow"
@@ -162,16 +140,17 @@ const UserPage = () => {
             username="coolguy"
             description="I like attending events! I might sponsor one too if I'm very much interested. Just hit me up, let's talk!"
           />
-          <div className="flex w-full items-end xs:mt-8 xs:justify-center md:mt-[-30px] md:justify-end">
-            <CreateEvent />
-          </div>
+          <CreateEvent />
         </div>
         <div className="border-b-1 mt-6 w-full border" />
         <div className="ml-[-80px] mt-16 flex justify-evenly">
           <div className="flex flex-col">
             <h1 className="pb-4 text-xl font-bold">Events Interested In</h1>
             {eventData.map((eventInfo, index) => (
-              <div key={index} className="mb-8 h-[84px] w-[480px] rounded-lg bg-gray-200 p-4 text-black dark:bg-white">
+              <div
+                key={index}
+                className="mb-8 h-[84px] w-[480px] rounded-lg bg-gray-200 p-4 text-black dark:bg-white"
+              >
                 <div className="flex">
                   <div className="w-74 flex-col pl-2 pr-12">
                     <div className="pb-1 text-sm font-bold">
@@ -204,19 +183,7 @@ const UserPage = () => {
         <div className="border-b-1 mt-16 w-full border" />
         <div>
           <h1 className="mt-12 text-2xl">Events Hosted</h1>
-          <div className="mt-8 flex justify-evenly space-x-5">
-            {eventHostedData.map((event, index) => (
-              <BlogPost
-                key={index}
-                imageSrc={event.imageSrc}
-                tag={event.tag}
-                title={event.title}
-                description={event.description}
-                avatarSrc={event.avatarSrc}
-                orgName={event.organizationName}
-              />
-            ))}
-          </div>
+          <EventList />
         </div>
       </div>
     </div>

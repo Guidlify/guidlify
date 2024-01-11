@@ -99,15 +99,15 @@ const OrganizationPage = () => {
             description="At WebX DAO, we're dedicated to staying at the forefront of the
             ever-evolving web. From web3 and web5 to the metaverse and DeFi!"
           />
-          <div className="xs:justify-center mt-4 flex items-center md:mt-0 md:mt-[-30px] md:w-full md:justify-end">
-            <CreateEvent />
-          </div>
+          <CreateEvent />
         </div>
         <div className="border-b-1 mt-6 w-full border" />
-        <div className="mt-16 flex justify-start">
-          <div className="ml-8 flex-1 flex-col">
-            <BadgeSection {...badgeSponsorData.badges[0]} />
-            <BadgeSection {...badgeSponsorData.sponsor[0]} />
+        <div className="mt-16 flex flex-col lg:flex-row">
+          <div className="mb-6 flex-1 flex-col md:ml-8">
+            <div className="flex space-x-12 sm:flex-col sm:space-x-0">
+              <BadgeSection {...badgeSponsorData.badges[0]} />
+              <BadgeSection {...badgeSponsorData.sponsor[0]} />
+            </div>
             <div>
               <h1 className="mb-3 text-xl font-bold">Sponsoring</h1>
               <div className="mb-4 flex flex-col space-y-1">
@@ -117,12 +117,12 @@ const OrganizationPage = () => {
               </div>
             </div>
           </div>
-          <div className="w-894 mr-4 flex-col">
+          <div className="mb-8 w-full flex-col justify-start md:mx-8 md:w-full lg:w-2/3">
             <h1 className="pb-4 text-xl font-bold">Upcoming Events</h1>
             {eventData.map((eventInfo, index) => (
               <div
                 key={index}
-                className="bg-image-container mb-8 h-[114px] w-[800px] rounded-lg p-4 text-white"
+                className="bg-image-container mb-8 min-h-[114px] w-full max-w-[680px] rounded-lg p-4 text-white lg:max-w-[800px]"
               >
                 <EventName
                   title={eventInfo.title}
