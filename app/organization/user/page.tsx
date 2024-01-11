@@ -131,7 +131,7 @@ const UserPage = () => {
           />
         </div>
         <div className="ml-8 mt-[-80px]">
-          <BadgeSection {...badgeSponsorData.badges[0]} />
+          <BadgeSection {...badgeSponsorData.badges[0]} option="2" />
         </div>
         <div className="flex flex-col items-center justify-center">
           <ProfileInfo
