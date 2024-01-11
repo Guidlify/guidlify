@@ -18,31 +18,22 @@ const BadgeSection: React.FC<BadgeSectionProps> = ({
   const choice: Choice = option
 
   return (
-    <div
-      className={cn({
-        "ml-[-20px]": choice === "2",
-      })}
-    >
+    <div className={cn({ "ml-[-20px] md:ml-0": choice === "2" })}>
       <h1
         className={cn("mb-2 text-xl font-bold", {
-          "mb-0 pt-8 text-sm": choice === "2",
+          "mb-0 pt-8 text-sm md:pt-0 md:text-xl": choice === "2",
         })}
       >
         {title}
       </h1>
       <div
         className={cn("mb-4 flex space-x-2 pl-4", {
-          "pl-0": choice === "2",
+          "pl-0 md:pl-4": choice === "2",
         })}
       >
         {items.map((item) => (
-          <div key={item.name} className="mr-1 mt-1">
-            <Image
-              alt={item.name}
-              src={item.url}
-              width={choice === "2" ? 24 : 44}
-              height={choice === "2" ? 24 : 44}
-            />
+          <div key={item.name} className="mr-1 mt-1 block">
+            <Image alt={item.name} src={item.url} width={32} height={32} />
           </div>
         ))}
       </div>

@@ -143,16 +143,16 @@ const UserPage = () => {
           <CreateEvent />
         </div>
         <div className="border-b-1 mt-6 w-full border" />
-        <div className="ml-[-80px] mt-16 flex justify-evenly">
-          <div className="flex flex-col">
+        <div className="mt-16 flex flex-col md:flex-row md:justify-evenly xl:ml-[-80px]">
+          <div className="mb-8 md:mb-0 md:mr-4">
             <h1 className="pb-4 text-xl font-bold">Events Interested In</h1>
             {eventData.map((eventInfo, index) => (
               <div
                 key={index}
-                className="mb-8 h-[84px] w-[480px] rounded-lg bg-gray-200 p-4 text-black dark:bg-white"
+                className="mb-8 rounded-lg bg-gray-200 p-4 text-black dark:bg-white md:min-h-[84px] md:w-[320px] lg:w-[480px]"
               >
-                <div className="flex">
-                  <div className="w-74 flex-col pl-2 pr-12">
+                <div className="flex flex-col lg:flex-row">
+                  <div className="w-74 flex-col pl-2 lg:pr-12">
                     <div className="pb-1 text-sm font-bold">
                       {eventInfo.title} <span>{eventInfo.emoji}</span>
                     </div>
@@ -165,7 +165,7 @@ const UserPage = () => {
               </div>
             ))}
           </div>
-          <div className="flex flex-col">
+          <div className="mb-4 md:mb-0">
             {badgeSponsorData.sponsoring.map((event, index) => (
               <div key={index} className="mb-4 flex flex-col space-y-1">
                 <h1 className="mb-3 text-xl font-bold">{event.title}</h1>
@@ -175,7 +175,7 @@ const UserPage = () => {
               </div>
             ))}
           </div>
-          <div className="flex flex-col">
+          <div className="flex space-x-12 md:flex-col md:space-x-0">
             <BadgeSection {...badgeSponsorData.sponsor[0]} />
             <BadgeSection {...badgeSponsorData.sponsor[1]} />
           </div>
