@@ -52,7 +52,7 @@ const SponsorPage = () => {
   return (
     <div className="container mb-20">
       <BannerOrganization url="/organization/banner.png" />
-      <div className="mr-24 flex justify-end">
+      <div className="mr-6 flex justify-end md:mr-24">
         <div className="mr-3 mt-[-24px]">
           <AvatarOverLap
             size={44}
@@ -60,16 +60,16 @@ const SponsorPage = () => {
             option="black"
           />
         </div>
-        <span className="mt-2 text-sm text-black dark:text-white">
+        <span className="mt-2 text-xs text-black dark:text-white sm:text-sm">
           1k+ people interested are in this event!
         </span>
       </div>
-      <div className="flex px-10">
-        <div className="mr-8 flex flex-col">
+      <div className="flex flex-col px-2 md:px-10 lg:px-2 xl:flex-row">
+        <div className="mr-0 flex flex-col md:mr-8 lg:mr-2">
           <h1 className="mt-10 text-2xl font-semibold">WebX Manilla</h1>
           <h3 className="mb-4 ml-2 text-xl">WebX Guild</h3>
-          <div className="mx-2 flex justify-between">
-            <div className="flex items-center justify-center">
+          <div className="mx-2 flex flex-col justify-between sm:flex-row">
+            <div className="flex items-start justify-start md:items-center md:justify-center">
               <Avatar className="mr-2 h-8 w-8">
                 <AvatarImage
                   src={"/organization/avatar.png"}
@@ -81,7 +81,7 @@ const SponsorPage = () => {
                 1 sponsor has funded WebX Guild&apos;s event.
               </span>
             </div>
-            <div className="mr-6">
+            <div className="mr-6 mt-4 sm:mt-0">
               <Button className="bg-violet-500">
                 <Icons.plusSquare className="mr-2 h-4 w-4 shrink-0" />
                 Save Event
@@ -89,7 +89,7 @@ const SponsorPage = () => {
             </div>
           </div>
           <div className="border-b-1 ml-[-4px] mt-6 w-[calc(100%-20px)] border" />
-          <div className="mx-4 text-left">
+          <div className="mx-0 text-left md:mx-4">
             <h1 className="text-bold py-5 text-3xl font-medium tracking-wide">
               Welcome to WebX Guild - GitHub Sponsor
             </h1>
@@ -104,15 +104,15 @@ const SponsorPage = () => {
               tincidunt. Eu volutpat odio facilisis mauris sit amet massa. Sed
               turpis tincidunt id aliquet risus feugiat in ante metus.{" "}
             </p>
-            <div className="mr-6 mt-20 rounded-lg border-2 border-gray-200 px-8 py-2">
-              <h1 className="mb-8 ml-3 mt-4 text-2xl font-bold tracking-wide">
+            <div className="mr-0 mt-20 rounded-lg border-2 border-gray-200 px-8 py-2 lg:mr-6">
+              <h1 className="mb-8 ml-0 mt-4 text-2xl font-bold tracking-wide lg:ml-3">
                 Meet the Team
               </h1>
-              <div className="mb-6 flex justify-between">
+              <div className="flex flex-col justify-between sm:flex-row">
                 {[1, 2, 3].map((index) => (
                   <div
                     key={index}
-                    className="flex flex-col items-center justify-center"
+                    className="mb-8 mr-2 flex flex-col items-center justify-center sm:mb-0"
                   >
                     <Avatar className="h-40 w-40">
                       <AvatarImage
@@ -121,7 +121,9 @@ const SponsorPage = () => {
                       />
                       <AvatarFallback>{"GL"}</AvatarFallback>
                     </Avatar>
-                    <div className="mt-6 text-xl font-bold">John Doe</div>
+                    <div className="mt-2 text-xl font-bold sm:mt-6">
+                      John Doe
+                    </div>
                     <div className="mt-1 text-sm">Core Team</div>
                   </div>
                 ))}
@@ -130,7 +132,7 @@ const SponsorPage = () => {
           </div>
         </div>
         <div className="flex flex-col">
-          <div className="border-1 mt-20 flex flex-col rounded-xl border border-gray-200 p-6">
+          <div className="border-1 ml-[-6px] mt-20 flex w-[428px] flex-col rounded-xl border border-gray-200 p-6 sm:ml-0">
             <h1 className="mb-4 mt-1 text-3xl font-semibold">Sponsor Tier</h1>
             <p className="mb-2">
               Sponsor an event and you&apos;ll receive special badges!
