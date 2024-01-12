@@ -1,6 +1,11 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Link from "next/link"
+import {
+  BadgeSponsorEventsDataProps,
+  userEventDataProps,
+} from "@/mock-models/user"
 
 import AvatarOrganization from "@/components/organization/avatar"
 import BadgeSection from "@/components/organization/badge-section"
@@ -9,117 +14,34 @@ import CreateEvent from "@/components/organization/create-event"
 import EventList from "@/components/organization/event-list"
 import ProfileInfo from "@/components/organization/profile-info"
 
-const eventData = [
-  {
-    title: "Guidlify Summit 2023",
-    description:
-      "Discover the latest innovations in technology, from Iot to robotics...",
-    emoji: "🚀",
-    eventUrl: "nowhere",
-  },
-  {
-    title: "Guidlify Summit 2023",
-    description:
-      "Discover the latest innovations in technology, from Iot to robotics...",
-    emoji: "🚀",
-    eventUrl: "nowhere",
-  },
-  {
-    title: "Guidlify Summit 2023",
-    description:
-      "Discover the latest innovations in technology, from Iot to robotics...",
-    emoji: "🚀",
-    eventUrl: "nowhere",
-  },
-]
-
-const badgeSponsorData = {
-  badges: [
-    {
-      title: "Badges",
-      items: [
-        {
-          name: "Beta Tester Badge",
-          url: "/organization/beta-tester-badge.png",
-        },
-        {
-          name: "Month Event Badge",
-          url: "/organization/month-event.png",
-        },
-      ],
-    },
-  ],
-  sponsor: [
-    {
-      title: "Sponsoring",
-      items: [
-        {
-          name: "WebXGuild",
-          url: "/organization/webxguild.png",
-        },
-        {
-          name: "WebXDAO",
-          url: "/organization/webxdao.png",
-        },
-      ],
-    },
-    {
-      title: "Organizations",
-      items: [
-        {
-          name: "WebXGuild",
-          url: "/organization/codepen.png",
-        },
-        {
-          name: "WebXDAO",
-          url: "/organization/ghost.png",
-        },
-      ],
-    },
-  ],
-  sponsoring: [
-    {
-      title: "Attending",
-      items: [
-        {
-          name: "WebX Manila",
-          date: "10/24/2023",
-        },
-        {
-          name: "ETHGlobal",
-          date: "12/23/2023",
-        },
-        {
-          name: "Hackcon",
-          date: "03/13/2023",
-        },
-      ],
-    },
-    {
-      title: "Past Events Attended",
-      items: [
-        {
-          name: "WebX Manila",
-          date: "10/24/2023",
-        },
-        {
-          name: "Polygon Hacks",
-          date: "12/23/2023",
-        },
-        {
-          name: "Chicken neck eater",
-          date: "12/23/2023",
-        },
-        {
-          name: "MLH Manila",
-          date: "12/23/2023",
-        },
-      ],
-    },
-  ],
-}
-
 const UserPage = () => {
+  const [userData, setUserData] = useState<{
+    userEventData: userEventDataProps[]
+    badgeSponsorEventsData: BadgeSponsorEventsDataProps
+  }>({
+    userEventData: [],
+    badgeSponsorEventsData: {
+      badges: [],
+      sponsor: [],
+      events: [],
+    },
+  })
+
+  const { userEventData, badgeSponsorEventsData } = userData
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/organization/user")
+        const data = await response.json()
+        setUserData(data)
+      } catch (error) {
+        console.error("Error fetching user data:", error)
+      }
+    }
+    fetchData()
+  }, [])
+
   return (
     <div className="container mb-20">
       <BannerOrganization url="/organization/banner.png" />
@@ -131,7 +53,7 @@ const UserPage = () => {
           />
         </div>
         <div className="ml-8 mt-[-80px]">
-          <BadgeSection {...badgeSponsorData.badges[0]} option="2" />
+          <BadgeSection {...badgeSponsorEventsData.badges[0]} option="2" />
         </div>
         <div className="flex flex-col items-center justify-center">
           <ProfileInfo
@@ -146,7 +68,7 @@ const UserPage = () => {
         <div className="mt-16 flex flex-col md:flex-row md:justify-evenly xl:ml-[-80px]">
           <div className="mb-8 md:mb-0 md:mr-4">
             <h1 className="pb-4 text-xl font-bold">Events Interested In</h1>
-            {eventData.map((eventInfo, index) => (
+            {userEventData.map((eventInfo, index) => (
               <div
                 key={index}
                 className="mb-8 rounded-lg bg-gray-200 p-4 text-black dark:bg-white md:min-h-[84px] md:w-[320px] lg:w-[480px]"
@@ -166,7 +88,7 @@ const UserPage = () => {
             ))}
           </div>
           <div className="mb-4 md:mb-0">
-            {badgeSponsorData.sponsoring.map((event, index) => (
+            {badgeSponsorEventsData.events.map((event, index) => (
               <div key={index} className="mb-4 flex flex-col space-y-1">
                 <h1 className="mb-3 text-xl font-bold">{event.title}</h1>
                 {event.items.map((item, innerIndex) => (
@@ -176,8 +98,8 @@ const UserPage = () => {
             ))}
           </div>
           <div className="flex space-x-12 md:flex-col md:space-x-0">
-            <BadgeSection {...badgeSponsorData.sponsor[0]} />
-            <BadgeSection {...badgeSponsorData.sponsor[1]} />
+            <BadgeSection {...badgeSponsorEventsData.sponsor[0]} />
+            <BadgeSection {...badgeSponsorEventsData.sponsor[1]} />
           </div>
         </div>
         <div className="border-b-1 mt-16 w-full border" />
