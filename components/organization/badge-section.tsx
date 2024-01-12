@@ -31,7 +31,7 @@ const BadgeSection: React.FC<BadgeSectionProps> = ({
           "pl-0 md:pl-4": choice === "2",
         })}
       >
-        {items.map((item) => (
+        {items?.map((item) => (
           <div key={item.name} className="mr-1 mt-1 block">
             <Image alt={item.name} src={item.url} width={32} height={32} />
           </div>

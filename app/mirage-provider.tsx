@@ -2,12 +2,17 @@
 
 import { useEffect } from "react"
 import { makeServer } from "@/migrate"
-import { createServer } from "miragejs"
 import { movies } from "@/mock-models/movies"
+import { badgeSponsorData, eventData } from "@/mock-models/organization"
+import { createServer } from "miragejs"
 
 createServer({
   routes() {
-    this.get("/api/movies", () => (movies))
+    this.get("/api/movies", () => movies)
+    this.get("/api/organization", () => ({
+      eventData,
+      badgeSponsorData,
+    }))
   },
 })
 

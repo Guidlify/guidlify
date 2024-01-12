@@ -1,5 +1,11 @@
 "use client"
 
+import { useEffect, useState } from "react"
+import {
+  BadgeSponsorDataProps,
+  eventDataProps,
+} from "@/mock-models/organization"
+
 import AvatarOrganization from "@/components/organization/avatar"
 import BadgeSection from "@/components/organization/badge-section"
 import BannerOrganization from "@/components/organization/banner"
@@ -8,82 +14,34 @@ import EventList from "@/components/organization/event-list"
 import EventName from "@/components/organization/event-name"
 import ProfileInfo from "@/components/organization/profile-info"
 
-const eventData = [
-  {
-    title: "WebX Manila",
-    description:
-      "Back at it again with another big event at Manila. Are you guys all excited? We are about to drop...",
-    location: "Manilla",
-    starCount: "20k",
-    date: "November 2023",
-  },
-  {
-    title: "WebX Manila",
-    description:
-      "Back at it again with another big event at Manila. Are you guys all excited? We are about to drop...",
-    location: "Manilla",
-    starCount: "20k",
-    date: "November 2023",
-  },
-  {
-    title: "WebX Manila",
-    description:
-      "Back at it again with another big event at Manila. Are you guys all excited? We are about to drop...",
-    location: "Manilla",
-    starCount: "20k",
-    date: "November 2023",
-  },
-]
-
-const badgeSponsorData = {
-  badges: [
-    {
-      title: "Badges",
-      items: [
-        {
-          name: "Beta Tester Badge",
-          url: "/organization/beta-tester-badge.png",
-        },
-        {
-          name: "Month Event Badge",
-          url: "/organization/month-event.png",
-        },
-      ],
-    },
-  ],
-  sponsor: [
-    {
-      title: "Sponsors",
-      items: [
-        {
-          name: "WebXDAO",
-          url: "/organization/webxdao.png",
-        },
-        {
-          name: "WebXGuild",
-          url: "/organization/webxguild.png",
-        },
-      ],
-    },
-  ],
-  sponsoring: [
-    {
-      title: "Sponsoring",
-      items: [
-        {
-          name: "WebX Manila",
-          date: "10/24/2023",
-        },
-        {
-          name: "ETHGlobal",
-          date: "12/23/2023",
-        },
-      ],
-    },
-  ],
-}
-
 const OrganizationPage = () => {
+  const [organizationData, setOrganizationData] = useState<{
+    eventData: eventDataProps[]
+    badgeSponsorData: BadgeSponsorDataProps
+  }>({
+    eventData: [],
+    badgeSponsorData: {
+      badges: [],
+      sponsor: [],
+      sponsoring: [],
+    },
+  })
+
+  const { eventData, badgeSponsorData } = organizationData
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/organization")
+        const data = await response.json()
+        setOrganizationData(data)
+      } catch (error) {
+        console.error("Error fetching organization data:", error)
+      }
+    }
+    fetchData()
+  }, [])
+
   return (
     <div className="container mb-20">
       <BannerOrganization url="/organization/banner.png" />
@@ -111,7 +69,7 @@ const OrganizationPage = () => {
             <div>
               <h1 className="mb-3 text-xl font-bold">Sponsoring</h1>
               <div className="mb-4 flex flex-col space-y-1">
-                {badgeSponsorData.sponsoring[0].items.map((item, index) => (
+                {badgeSponsorData.sponsoring?.[0]?.items.map((item, index) => (
                   <div key={index}>{`${item.name} (${item.date})`}</div>
                 ))}
               </div>
