@@ -1,6 +1,8 @@
 "use client"
 
+import { useEffect, useState } from "react"
 import Image from "next/legacy/image"
+import { SponsorDataProps } from "@/mock-models/sponsor"
 
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 import { Button } from "@/components/ui/button"
@@ -13,42 +15,32 @@ import AvatarOverLap from "@/components/home-page/avatar-overlap"
 import { Icons } from "@/components/icons"
 import BannerOrganization from "@/components/organization/banner"
 
-const sponsorData = [
-  {
-    tier: "Diamond",
-    price: "5000",
-  },
-  {
-    tier: "Platinum",
-    price: "1000",
-  },
-  {
-    tier: "Gold",
-    price: "500",
-  },
-  {
-    tier: "Silver",
-    price: "100",
-  },
-]
-
-const SponsoringOrganizations = {
-  organizations: [
-    {
-      title: "Sponsoring",
-      items: [
-        {
-          name: "WebXDAO",
-          url: "/organization/webxdao.png",
-          description:
-            "This is so good! I encourage everyone who is reading this right now to attend the events they host. Definitely helps people build career in tech - currently sponsoring this organization.",
-        },
-      ],
-    },
-  ],
-}
-
 const SponsorPage = () => {
+  const [sponsorData, setSponsorData] = useState<SponsorDataProps>()
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await fetch("/api/organization/sponsor")
+        const data = await response.json()
+        console.log({ sponsorData: data })
+        setSponsorData(data.SponsoringOrganizationsData)
+      } catch (error) {
+        console.error("Error fetching sponsor data:", error)
+      }
+    }
+    fetchData()
+  }, [])
+
+  const {
+    title,
+    description,
+    eventName,
+    orgName,
+    numberOfSponsors,
+    peopleInterested,
+  } = sponsorData?.basicInfo || {}
+
   return (
     <div className="container mb-20">
       <BannerOrganization url="/organization/banner.png" />
@@ -61,13 +53,13 @@ const SponsorPage = () => {
           />
         </div>
         <span className="mt-2 text-xs text-black dark:text-white sm:text-sm">
-          1k+ people interested are in this event!
+          {peopleInterested}+ people interested are in this event!
         </span>
       </div>
       <div className="flex flex-col px-2 md:px-10 lg:px-2 xl:flex-row">
         <div className="mr-0 flex flex-col md:mr-8 lg:mr-2">
-          <h1 className="mt-10 text-2xl font-semibold">WebX Manilla</h1>
-          <h3 className="mb-4 ml-2 text-xl">WebX Guild</h3>
+          <h1 className="mt-10 text-2xl font-semibold">{eventName}</h1>
+          <h3 className="mb-4 ml-2 text-xl">{orgName}</h3>
           <div className="mx-2 flex flex-col justify-between sm:flex-row">
             <div className="flex items-start justify-start md:items-center md:justify-center">
               <Avatar className="mr-2 h-8 w-8">
@@ -78,7 +70,7 @@ const SponsorPage = () => {
                 <AvatarFallback>{"GL"}</AvatarFallback>
               </Avatar>
               <span className="ml-1">
-                1 sponsor has funded WebX Guild&apos;s event.
+                {numberOfSponsors} sponsor has funded WebX Guild&apos;s event.
               </span>
             </div>
             <div className="mr-6 mt-4 sm:mt-0">
@@ -91,19 +83,9 @@ const SponsorPage = () => {
           <div className="border-b-1 ml-[-4px] mt-6 w-[calc(100%-20px)] border" />
           <div className="mx-0 text-left md:mx-4">
             <h1 className="text-bold py-5 text-3xl font-medium tracking-wide">
-              Welcome to WebX Guild - GitHub Sponsor
+              {title}
             </h1>
-            <p className="mr-4">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Quis
-              auctor elit sed vulputate mi sit amet mauris commodo. Eu augue ut
-              lectus arcu bibendum at varius vel. Faucibus pulvinar elementum
-              integer enim neque volutpat ac tincidunt vitae. Pharetra convallis
-              posuere morbi leo urna molestie at. Neque gravida in fermentum et.
-              Convallis tellus id interdum velit laoreet id donec ultrices
-              tincidunt. Eu volutpat odio facilisis mauris sit amet massa. Sed
-              turpis tincidunt id aliquet risus feugiat in ante metus.{" "}
-            </p>
+            <p className="mr-4">{description}</p>
             <div className="mr-0 mt-20 rounded-lg border-2 border-gray-200 px-8 py-2 lg:mr-6">
               <h1 className="mb-8 ml-0 mt-4 text-2xl font-bold tracking-wide lg:ml-3">
                 Meet the Team
@@ -112,7 +94,7 @@ const SponsorPage = () => {
                 {[1, 2, 3].map((index) => (
                   <div
                     key={index}
-                    className="mb-8 mr-2 flex flex-col items-center justify-center sm:mb-0"
+                    className="mb-8 mr-2 flex flex-col items-center justify-center sm:mb-6"
                   >
                     <Avatar className="h-40 w-40">
                       <AvatarImage
@@ -137,8 +119,11 @@ const SponsorPage = () => {
             <p className="mb-2">
               Sponsor an event and you&apos;ll receive special badges!
             </p>
-            {sponsorData.map((sponsorTier) => (
-              <div className="mb-3 h-[76px] w-[378px] rounded-md bg-gray-200 p-3 text-black dark:bg-gray-200/20 dark:text-white">
+            {sponsorData?.sponsorTierData?.map((sponsorTier, idx) => (
+              <div
+                className="mb-3 h-[76px] w-[378px] rounded-md bg-gray-200 p-3 text-black dark:bg-gray-200/20 dark:text-white"
+                key={idx}
+              >
                 <div className="flex items-center">
                   <div className="flex flex-col pl-2">
                     <div className="text-md pb-1 font-bold">
@@ -160,22 +145,19 @@ const SponsorPage = () => {
                         </Button>
                       </HoverCardTrigger>
                       <HoverCardContent className="w-80">
-                        <div className="flex space-x-8 pl-2 text-left">
-                          <div className="space-y-1">
-                            <div className="flex items-center justify-start">
-                              <Icons.check className="mr-2 h-4 w-4" /> Logo on
-                              Website, Banners
-                            </div>
-                            <div className="flex items-center justify-start">
-                              <Icons.check className="mr-2 h-4 w-4" /> Dedicated
-                              Post
-                            </div>
-                            <div className="flex items-center justify-start">
-                              <Icons.check className="mr-2 h-4 w-4" /> Story
-                              Promotion
+                        {sponsorTier.about.map((items, idx) => (
+                          <div
+                            className="flex space-x-8 pl-2 text-left"
+                            key={idx}
+                          >
+                            <div className="space-y-1">
+                              <div className="flex items-center justify-start">
+                                <Icons.check className="mr-2 h-4 w-4" />{" "}
+                                {items.description}
+                              </div>
                             </div>
                           </div>
-                        </div>
+                        ))}
                       </HoverCardContent>
                     </HoverCard>
                     <Button className="rounded-md bg-violet-500 px-6 py-2 text-sm font-medium tracking-wide text-gray-200 hover:bg-violet-600 hover:text-gray-100">
@@ -187,7 +169,7 @@ const SponsorPage = () => {
             ))}
           </div>
           <div className="mt-6">
-            {SponsoringOrganizations.organizations.map((org, idx) => (
+            {sponsorData?.organizations?.map((org, idx) => (
               <div key={idx}>
                 <h1 className="mb-6 text-3xl font-bold tracking-wide">
                   {org.title}
