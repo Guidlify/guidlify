@@ -1,9 +1,5 @@
-export interface userEventDataProps {
-  title: string
-  description: string
-  emoji: string
-  eventUrl: string
-}
+import { BadgeSponsorEventsDataProps } from "./interfaces/BadgeSponsorEventsDataProps"
+import { userEventDataProps } from "./interfaces/userEventDataProps"
 
 export const userEventData: userEventDataProps[] = [
   {
@@ -28,42 +24,6 @@ export const userEventData: userEventDataProps[] = [
     eventUrl: "nowhere",
   },
 ]
-
-interface BadgeItem {
-  name: string
-  url: string
-}
-
-interface BadgeSection {
-  title: string
-  items: BadgeItem[]
-}
-
-interface SponsorItem {
-  name: string
-  url: string
-}
-
-interface SponsorSection {
-  title: string
-  items: SponsorItem[]
-}
-
-interface EventItem {
-  name: string
-  date: string
-}
-
-interface EventSection {
-  title: string
-  items: EventItem[]
-}
-
-export interface BadgeSponsorEventsDataProps {
-  badges: BadgeSection[]
-  sponsor: SponsorSection[]
-  events: EventSection[]
-}
 
 export const badgeSponsorEventsData: BadgeSponsorEventsDataProps = {
   badges: [
