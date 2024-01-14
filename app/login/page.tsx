@@ -1,6 +1,5 @@
 "use client"
 
-import { createClientComponentClient } from "@supabase/auth-helpers-nextjs"
 import { useRouter } from "next/navigation"
 import { FormEvent, useState } from "react"
 
@@ -10,7 +9,6 @@ import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { ToastAction } from "@/components/ui/toast"
 import { useToast } from "@/components/ui/use-toast"
-import { Database } from "@/types/supabase"
 import { Loader2Icon } from "lucide-react"
 import Link from "next/link"
 
@@ -19,7 +17,6 @@ export default function Login() {
   const [email, setEmail] = useState("")
   const [password, setPassword] = useState("")
   const router = useRouter()
-  const supabase = createClientComponentClient<Database>()
   const [isHidden, setIsHidden] = useState(false);
   const [loadingOTP, setLoadingOTP] = useState(false);
 
@@ -29,13 +26,6 @@ export default function Login() {
   };
 
   const handleSignUp = async () => {
-    await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: `${location.origin}/auth/callback`,
-      },
-    })
     router.refresh()
   }
 
@@ -44,88 +34,46 @@ export default function Login() {
 
     if (!password) {
       setLoadingOTP(true);
-      await supabase.auth.signInWithOtp({
-        email: email,
-        options: {
-          emailRedirectTo: `${location.origin}/`,
-        },
-      }).then(({ data, error }) => {
-        // (then): Handle the response from the API call
-        setLoadingOTP(false);
 
-        // If error is triggered, it's because the user has already tried the magic link too many times
-        if (error) {
-          toast({
-            variant: "destructive",
-            title: "Too many request!",
-            description: error?.message,
-            action: <ToastAction altText="Try again">Understood.</ToastAction>,
-          })
-        }
-        // Else, the magic link has been sent!
-        else {
-          toast({
-            variant: "default",
-            title: "Magic link sent. ✅",
-            description: "A magic link has been sent to your email. Please check your inbox.",
-            action: <ToastAction altText="Try again">Ok!</ToastAction>,
-          })
-        }
+      const response = {
+        status: true,
+        message: 'I do not know what I would talking about'
+      }
 
-      }).catch((error) => {
-          setLoadingOTP(false);
-          // (catch): Handle the error appropriately
-          toast({
-            variant: "destructive",
-            title: "Uh oh! Failed credential login.",
-            description: error?.message,
-            action: <ToastAction altText="Try again">Try again</ToastAction>,
-          })
-        });
-    } else {
-      const login = await supabase.auth.signInWithPassword({
-        email,
-        password,
-      })
+      // (then): Handle the response from the API call
+      setLoadingOTP(false);
 
-      if (login.data.user !== null) {
-        setEmail("")
-        setPassword("")
-        // router.refresh()
-        // router.push("/")
-      } else {
+      // If error is triggered, it's because the user has already tried the magic link too many times
+      if (response.status) {
         toast({
+          variant: "destructive",
+          title: "Too many request!",
+          description: response?.message,
+          action: <ToastAction altText="Try again">Understood.</ToastAction>,
+        })
+      }
+      // Else, the magic link has been sent!
+      else {
+        toast({
+          variant: "default",
+          title: "Magic link sent. ✅",
+          description: "A magic link has been sent to your email. Please check your inbox.",
+          action: <ToastAction altText="Try again">Ok!</ToastAction>,
+        })
+      }
+    } else {
+      toast({
           variant: "destructive",
           title: "Uh oh! Failed credential login.",
           description:
             "There was a problem with your email or password is not correct!.",
           action: <ToastAction altText="Try again">Try again</ToastAction>,
         })
-      }
     }
   }
 
   async function signInWithGitHub() {
-    const { data, error } = await supabase.auth.signInWithOAuth({
-      provider: 'github',
-    });
-
-    if (data) {
-      console.log(data);
-      toast({
-        variant: "default",
-        title: "GitHub login successful! ✅",
-        description: "You have been logged in with GitHub. Welcome in WebX Guild!",
-        action: <ToastAction altText="Try again">Ok!</ToastAction>,
-      })
-    } else {
-      toast({
-        variant: "destructive",
-        title: "Something went wrong with the GitHub login.",
-        description: error?.message,
-        action: <ToastAction altText="Try again">Try again</ToastAction>,
-      })
-    }
+    return false
   }
 
 
@@ -180,7 +128,7 @@ export default function Login() {
 
       {/* Github signin */}
       <div className="flex flex-col gap-3 mx-auto w-4/5">
-        <Button className="flex gap-2" onClick={signInWithGitHub}><Icons.github />Sign in with Github </Button>
+        <Button className="flex gap-2" onClick={signInWithGitHub}><Icons.GitHub size={24} />Sign in with Github </Button>
       </div>
 
       {/* Footer section */}
