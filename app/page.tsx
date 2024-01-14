@@ -1,14 +1,12 @@
-import { createServerComponentClient } from "@supabase/auth-helpers-nextjs"
-import { cookies } from "next/headers"
 import Link from "next/link"
 
 import { buttonVariants } from "@/components/ui/button"
-import { buttonVariants } from "@/components/ui/button"
 import { siteConfig } from "@/config/site"
 import { cn } from "@/lib/utils"
-import { Database } from "@/types/supabase"
 
 export default function IndexPage() {
+  const session = false;
+
   return (
     <>
       <section className="grow space-y-6 pb-8 pt-6 md:pb-12 md:pt-10 lg:py-32">
