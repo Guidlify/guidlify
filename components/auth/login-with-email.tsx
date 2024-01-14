@@ -1,7 +1,5 @@
 import { FormEvent, useState } from "react"
 
-import supabaseClient from "@/lib/supabase-browser"
-
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
 import { ToastAction } from "../ui/toast"
@@ -17,22 +15,21 @@ export default function LoginWithEmail({ setLoadingOTP }: LoginWithEmailProps) {
 
   const handleSignInWithEmail = async (e: FormEvent) => {
     e.preventDefault()
-    setLoadingOTP(true)
-    await supabaseClient.auth
-      .signInWithOtp({
-        email: email,
-        options: {
-          emailRedirectTo: `${location.origin}/`,
-        },
-      })
-      .then(({ data, error }) => {
-        setLoadingOTP(false)
+    // COMMENT: this is a devonly mode :D
+    const response = {
+      status: true,
+      message: 'Error credentials'
+    }
 
-        if (error) {
+    setLoadingOTP(true)
+    try {
+      setLoadingOTP(false)
+
+        if (response.status) {
           toast({
             variant: "destructive",
             title: "Too many request!",
-            description: error?.message,
+            description: response?.message,
             action: <ToastAction altText="Try again">Understood.</ToastAction>,
           })
         } else {
@@ -44,16 +41,15 @@ export default function LoginWithEmail({ setLoadingOTP }: LoginWithEmailProps) {
             action: <ToastAction altText="Try again">Ok!</ToastAction>,
           })
         }
-      })
-      .catch((error) => {
-        setLoadingOTP(false)
+    } catch (error) {
+      setLoadingOTP(false)
         toast({
           variant: "destructive",
           title: "Uh oh! Failed credential login.",
-          description: error?.message,
+          description: response?.message,
           action: <ToastAction altText="Try again">Try again</ToastAction>,
         })
-      })
+    }
   }
 
   return (

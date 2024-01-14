@@ -1,9 +1,8 @@
 "use client"
 
-import { FormEvent, useState } from "react"
 import { useRouter } from "next/navigation"
+import { FormEvent, useState } from "react"
 
-import supabaseClient from "@/lib/supabase-browser"
 
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
@@ -18,12 +17,9 @@ export default function LoginWithUsernameAndPasswordForm() {
 
   const handleSignIn = async (e: FormEvent) => {
     e.preventDefault()
-    const login = await supabaseClient.auth.signInWithPassword({
-      email,
-      password,
-    })
+    const login = false
 
-    if (login.data.user !== null) {
+    if (login) {
       setEmail("")
       setPassword("")
       router.refresh()

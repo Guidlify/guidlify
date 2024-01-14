@@ -1,9 +1,7 @@
 "use client"
 
-import React, { FormEvent, useState } from "react"
 import { useRouter } from "next/navigation"
-
-import supabaseClient from "@/lib/supabase-browser"
+import { FormEvent, useState } from "react"
 
 import { Button } from "../ui/button"
 import { Input } from "../ui/input"
@@ -19,14 +17,8 @@ export default function SignUpWithEmail() {
 
   const handleSignUp = async (e: FormEvent) => {
     e.preventDefault()
-    const signUp = await supabaseClient.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: `${location.origin}/auth/callback`,
-      },
-    })
-    if (signUp.data.session === null) {
+    const signUp = true
+    if (signUp) {
       toast({
         variant: "destructive",
         title: "Whoops! You are already here.",
