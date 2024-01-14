@@ -1,17 +1,15 @@
 "use client"
 
-import React from "react"
-import Link from "next/link"
-import { usePathname, useRouter } from "next/navigation"
 import { NavItem } from "@/types"
 import { type Session } from "@supabase/auth-helpers-nextjs"
+import Link from "next/link"
+import { usePathname, useRouter } from "next/navigation"
+import { useState } from "react"
 
-import { ProfileState } from "@/types/users"
-import supabaseClient from "@/lib/supabase-browser"
-import { cn, getCountryFlag } from "@/lib/utils"
 import { Button, buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import { ProfileState } from "@/types/users"
 
-import { Skeleton } from "./ui/skeleton"
 
 interface AuthNavProps {
   session: Session | null
@@ -24,10 +22,7 @@ export default function AuthNav({ session, items }: AuthNavProps) {
   const router = useRouter()
   const [detail, setDetail] = useState<ProfileState>()
 
-  const handleSignOut = async () => {
-    await supabase.auth.signOut()
-    router.refresh()
-  }
+  const handleSignOut = async () => router.refresh()
 
   return (
     <nav>
