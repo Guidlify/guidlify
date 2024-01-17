@@ -78,8 +78,4 @@
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
   }
-  /* This experimental utility class see: https://github.com/tailwindlabs/tailwindcss/pull/11320 */
-  .text-balance {
-    text-wrap: balance;
-  }
 }

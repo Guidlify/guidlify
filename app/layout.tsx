@@ -1,30 +1,20 @@
-import { Inter as FontSans } from "next/font/google";
-import localFont from "next/font/local";
+import { Inter as FontSans } from "next/font/google"
+import localFont from "next/font/local"
 
+import "@/styles/globals.css"
+import { Metadata } from "next"
 
+import AuthNav from "@/components/auth-nav"
+import { MainNav } from "@/components/main-nav"
+import { SiteFooter } from "@/components/site-footer"
+import { TailwindIndicator } from "@/components/tailwind-indicator"
+import { ThemeProvider } from "@/components/theme-provider"
+import { Toaster } from "@/components/ui/toaster"
+import { landingConfig } from "@/config/landing"
+import { siteConfig } from "@/config/site"
+import { cn } from "@/lib/utils"
 
-import "@/styles/globals.css";
-import { Metadata } from "next";
-
-
-
-import { landingConfig } from "@/config/landing";
-import { siteConfig } from "@/config/site";
-import { supabaseServer } from "@/lib/supabase-server";
-import { cn } from "@/lib/utils";
-import { Toaster } from "@/components/ui/toaster";
-import AuthNav from "@/components/auth-nav";
-import { MainNav } from "@/components/main-nav";
-import { SiteFooter } from "@/components/site-footer";
-import { TailwindIndicator } from "@/components/tailwind-indicator";
-import { ThemeProvider } from "@/components/theme-provider";
-
-
-
-import MirageProvider from "./mirage-provider";
-
-
-export const dynamic = "force-dynamic"
+export const dynamic = 'force-dynamic'
 
 const fontSans = FontSans({
   subsets: ["latin"],
@@ -42,7 +32,6 @@ interface RootLayoutProps {
 }
 
 export const metadata: Metadata = {
-  metadataBase: null,
   title: {
     default: siteConfig.name,
     template: `%s | ${siteConfig.name}`,
@@ -86,21 +75,16 @@ export const metadata: Metadata = {
     shortcut: "/favicon-16x16.png",
     apple: "/apple-touch-icon.png",
   },
-  // manifest: `${siteConfig.url}/site.webmanifest`,
+  manifest: `${siteConfig.url}/site.webmanifest`,
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const supabase = supabaseServer()
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
   return (
     <html lang="en" suppressHydrationWarning>
       <head />
       <body
         className={cn(
-          "flex min-h-screen flex-col bg-background font-sans antialiased",
+          "flex flex-col min-h-screen bg-background font-sans antialiased",
           fontSans.variable,
           fontHeading.variable
         )}
@@ -109,15 +93,14 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           <header className="container z-40 bg-background">
             <div className="flex h-20 items-center justify-between py-6">
               <MainNav items={landingConfig.mainNav} />
-              <AuthNav session={session} items={landingConfig.privateNav} />
+              <AuthNav session={null} items={landingConfig.mainNav} />
             </div>
           </header>
           <div className="grow">{children}</div>
           <SiteFooter></SiteFooter>
-          <TailwindIndicator />
           <Toaster />
+          <TailwindIndicator />
         </ThemeProvider>
-        <MirageProvider />
       </body>
     </html>
   )

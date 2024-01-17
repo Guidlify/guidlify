@@ -3,11 +3,11 @@
 import { useEffect } from "react"
 import { makeServer } from "@/migrate"
 import { createServer } from "miragejs"
-import { movies } from "@/mock-models/movies"
+import { users } from "@/mock-models/users"
 
 createServer({
   routes() {
-    this.get("/api/movies", () => (movies))
+    this.get("/api/users", () => (users))
   },
 })
 
@@ -15,9 +15,9 @@ export default function MirageProvider() {
   useEffect(() => {
     ;async () => makeServer()
     // COMMENT: Remove this examples
-    fetch("/api/movies")
+    fetch("/api/users")
       .then((res) => res.json())
-      .then((json) => console.log(json.movies))
+      .then((json) => console.log(json.users))
   }, [])
   return <></>
 }
