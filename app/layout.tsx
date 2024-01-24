@@ -1,28 +1,22 @@
-import { Inter as FontSans } from "next/font/google";
-import localFont from "next/font/local";
+import { Inter as FontSans } from "next/font/google"
+import localFont from "next/font/local"
 
+import "@/styles/globals.css"
+import { Metadata } from "next"
 
-
-import "@/styles/globals.css";
-import { Metadata } from "next";
-
-
-
-import { landingConfig } from "@/config/landing";
-import { siteConfig } from "@/config/site";
-import { supabaseServer } from "@/lib/supabase-server";
-import { cn } from "@/lib/utils";
-import { Toaster } from "@/components/ui/toaster";
-import AuthNav from "@/components/auth-nav";
-import { MainNav } from "@/components/main-nav";
-import { SiteFooter } from "@/components/site-footer";
-import { TailwindIndicator } from "@/components/tailwind-indicator";
-import { ThemeProvider } from "@/components/theme-provider";
-
-
-
-import MirageProvider from "./mirage-provider";
-
+import { landingConfig } from "@/config/landing"
+import { siteConfig } from "@/config/site"
+import {
+  AuthPageContext,
+  AuthPageProvider,
+} from "@/lib/context/AuthPageContext"
+import { cn } from "@/lib/utils"
+import { Toaster } from "@/components/ui/toaster"
+import AuthNav from "@/components/auth-page/auth-nav"
+import { MainNav } from "@/components/main-nav"
+import { SiteFooter } from "@/components/site-footer"
+import { TailwindIndicator } from "@/components/tailwind-indicator"
+import { ThemeProvider } from "@/components/theme-provider"
 
 export const dynamic = "force-dynamic"
 
@@ -57,11 +51,11 @@ export const metadata: Metadata = {
   ],
   authors: [
     {
-      name: "webxdao",
-      url: "https://webxdao.xyz",
+      name: "webxguild",
+      url: "https://guidlify.com",
     },
   ],
-  creator: "webxdao",
+  creator: "webxguild",
   themeColor: [
     { media: "(prefers-color-scheme: light)", color: "white" },
     { media: "(prefers-color-scheme: dark)", color: "black" },
@@ -90,14 +84,8 @@ export const metadata: Metadata = {
 }
 
 export default async function RootLayout({ children }: RootLayoutProps) {
-  const supabase = supabaseServer()
-  const {
-    data: { session },
-  } = await supabase.auth.getSession()
-
   return (
     <html lang="en" suppressHydrationWarning>
-      <head />
       <body
         className={cn(
           "flex min-h-screen flex-col bg-background font-sans antialiased",
@@ -105,19 +93,20 @@ export default async function RootLayout({ children }: RootLayoutProps) {
           fontHeading.variable
         )}
       >
-        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
-          <header className="container z-40 bg-background">
-            <div className="flex h-20 items-center justify-between py-6">
-              <MainNav items={landingConfig.mainNav} />
-              <AuthNav session={session} items={landingConfig.privateNav} />
-            </div>
-          </header>
-          <div className="grow">{children}</div>
-          <SiteFooter></SiteFooter>
-          <TailwindIndicator />
-          <Toaster />
-        </ThemeProvider>
-        <MirageProvider />
+        <AuthPageProvider>
+          <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+            <header className="container z-40 bg-background">
+              <div className="flex h-20 items-center justify-between py-6">
+                <MainNav items={landingConfig.mainNav} />
+                <AuthNav items={landingConfig.privateNav} />
+              </div>
+            </header>
+            <div className="grow">{children}</div>
+            {/* <SiteFooter></SiteFooter> */}
+            <TailwindIndicator />
+            <Toaster />
+          </ThemeProvider>
+        </AuthPageProvider>
       </body>
     </html>
   )
